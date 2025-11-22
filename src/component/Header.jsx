@@ -71,7 +71,7 @@ const Header = () => {
         <>
             <div className="navbar flex lg:justify-evenly md:justify-evenly justify-around items-center shadow-md bg-white pr-[15px] h-[7vh] md:h-[9vh] w-[98%] lg:h-[10vh] z-1000 lg:mt-[20px] mt-[25px] m-[2px] rounded-full">
                 <div className="logo flex justify-center items-center lg:mr-[2vw]">
-                    <img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg" alt="Flipkart" className='cursor-pointer lg:w-[10vw] md:w-[13vw] w-[18vw]' onClick={() => navigate("/")} />
+                    <img src={`${baseURL}/static/logo.png`} alt="Flipkart" className='cursor-pointer lg:w-[5vw] md:w-[8vw] w-[9vw]' onClick={() => navigate("/")} />
                 </div>
                 <div className="search  flex  justify-center items-center bg-[#f0f5ff] w-[55vw] md:w-[40vw] h-[4vh] lg:w-[45vw] shadow-md lg:h-[6vh] rounded-[10px]  lg:pl-[10px] md:pl-[10px] mr-[5px] ">
                     <div className='lg:w-[2vw] w-[1vw] cursor-pointer '>
@@ -98,27 +98,27 @@ const Header = () => {
                                             onClick={handleToggleDropdown}
                                         >Hi,&nbsp;{User.user.Username}</li>
                                         {IsOpen && (<>
-                                            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[5rem] lg:w-[15rem] bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] rounded-md border z-50  "
+                                            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[5rem] lg:w-[10rem] bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] rounded-md border z-50  "
                                             // Close when leaving dropdown
                                             >
                                                 <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/MyProfile")}>
                                                     <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" >
-                                                        <li className='cursor-pointer lg:text-sm text-[10px] ' onClick={() => navigate("/MyProfile")}>My Profile</li>
+                                                        <li className='cursor-pointer lg:text-sm text-[10px] pl-[1vw] ' onClick={() => navigate("/MyProfile")}>My Profile</li>
                                                     </div>
                                                 </ul>
-                                                <div className="lg:w-[15rem] w-[5rem] h-[1px] bg-gray-500"></div>
+                                                <div className="lg:w-[10rem] w-[5rem] h-[1px] bg-gray-500"></div>
                                                 <ul className=" py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/Order")}>
                                                     <div className="signup-container flex items-center cursor-pointer mb-[5px] mt-[5px]" >
-                                                        <li className='cursor-pointer lg:text-sm text-[10px]  flex items-center  ' onClick={() => navigate("/Order")}>Orders</li>
+                                                        <li className='cursor-pointer lg:text-sm text-[10px]  flex items-center pl-[1vw] ' onClick={() => navigate("/Order")}>Orders</li>
                                                     </div>
                                                 </ul>
-                                                <div className="lg:w-[15rem] w-[5rem] h-[1px] bg-gray-500"></div>
+                                                <div className="lg:w-[10rem] w-[5rem] h-[1px] bg-gray-500"></div>
                                                 <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => handleLogout()}>
                                                     <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" >
-                                                        <li className='cursor-pointer lg:text-sm text-[10px]   ' onClick={() => handleLogout()}>Logout</li>
+                                                        <li className='cursor-pointer lg:text-sm text-[10px] pl-[1vw]   ' onClick={() => handleLogout()}>Logout</li>
                                                     </div>
                                                 </ul>
-                                                <div className="lg:w-[15rem] w-[5rem] h-[1px] bg-gray-500"></div>
+                                                <div className="lg:w-[10rem] w-[5rem] h-[1px] bg-gray-500"></div>
                                             </div>
                                         </>)}
                                     </div>
@@ -132,8 +132,7 @@ const Header = () => {
                                         ref={dropdownRef}
                                     >
                                         <div className={`container flex flex-row items-center `} >
-                                            <img src={`${baseURL}/static/login_header.gif`} className='lg:w-[3vw] ml-[5px] lg:h-[6vh] w-[3vw] h-[2vh]' autoPlay loop muted playsInline />
-                                            <li className={`cursor-pointer hover:scale-110 rounded-[10px] p-[5px] text-black lg:text-[20px] text-[12px]`}
+                                            <li className={`cursor-pointer hover:scale-110 rounded-[10px] p-[5px] text-black lg:text-[20px] md:text-[15px] text-[12px]`}
                                                 onClick={() => navigate("/Login")}
                                             >Login
                                             </li>
@@ -152,33 +151,33 @@ const Header = () => {
                                             // Close when leaving dropdown
                                             >
                                                 <ul className="py-2 lg:p-[5px] p-[2px] hover:bg-[#fafafa]">
-                                                    <div className="signup-container flex justify-between items-center cursor-pointer lg:mb-[15px] lg:mt-[5px] mb-[8px] mt-[2px]">
+                                                    <div className="signup-container flex justify-between pl-[1vw] flex-col cursor-pointer lg:mb-[15px] lg:mt-[5px] mb-[0px] mt-[1px]">
                                                         <span>
-                                                            <li className='cursor-pointer lg:text-sm text-[6px]  ' onClick={() => navigate("/SignUp")}>New Customer?</li>
+                                                            <li className='cursor-pointer lg:text-sm md:text-[9px]  ' onClick={() => navigate("/SignUp")}>New Customer?</li>
                                                         </span>
-                                                        <li className='cursor-pointer lg:text-sm text-[6px]  ' onClick={() => navigate("/SignUp")}>Sign Up</li>
+                                                        <li className='cursor-pointer lg:text-sm md:text-[9px] ' onClick={() => navigate("/SignUp")}>Sign Up</li>
                                                     </div>
                                                 </ul>
 
-                                                <div className="lg:w-[15rem] w-[6rem] h-[1px] bg-gray-300"></div>
+                                                <div className="lg:w-[10rem] w-[6rem] h-[1px] bg-gray-300"></div>
                                                 <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/MyProfile")}>
                                                     <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" onClick={() => navigate("/MyProfile")}>
-                                                        <li className='cursor-pointer lg:text-sm text-[10px]   '>My Profile</li>
+                                                        <li className='cursor-pointer lg:text-sm text-[10px] pl-[1vw] '>My Profile</li>
                                                     </div>
                                                 </ul>
-                                                <div className="lg:w-[15rem] w-[6rem] h-[1px] bg-gray-500"></div>
+                                                <div className="lg:w-[10rem] w-[6rem] h-[1px] bg-gray-500"></div>
                                                 <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/Order")}>
                                                     <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" onClick={() => navigate("/Order")}>
-                                                        <li className='cursor-pointer lg:text-sm text-[10px]   '>Orders</li>
+                                                        <li className='cursor-pointer lg:text-sm text-[10px] pl-[1vw]  '>Orders</li>
                                                     </div>
                                                 </ul>
-                                                <div className="lg:w-[15rem] w-[6rem] h-[1px] bg-gray-500"></div>
+                                                <div className="lg:w-[10rem] w-[6rem] h-[1px] bg-gray-500"></div>
                                                 <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => handleLogout()}>
                                                     <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" onClick={() => handleLogout()}>
-                                                        <li className='cursor-pointer lg:text-sm text-[10px]   ' onClick={() => handleLogout()}>Logout</li>
+                                                        <li className='cursor-pointer lg:text-sm text-[10px] pl-[1vw]  ' onClick={() => handleLogout()}>Logout</li>
                                                     </div>
                                                 </ul>
-                                                <div className="lg:w-[15rem] w-[6rem] h-[1px] bg-gray-500"></div>
+                                                <div className="lg:w-[10rem] w-[6rem] h-[1px] bg-gray-500"></div>
 
                                             </div>
                                         </>)}

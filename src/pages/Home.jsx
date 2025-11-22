@@ -29,7 +29,8 @@ const Home = () => {
   console.log(product)
   return (
     <>
-      <div className="container flex justify-center flex-col items-center">
+    <div className="w-full flex flex-col">
+
         <ImageSlider />
 
         {

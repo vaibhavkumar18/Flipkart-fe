@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 lg:gap-8">
           {/* Copyright Information */}
           <div className="text-sm font-medium text-gray-300">
-            © {new Date().getFullYear()} Flipkart. All rights reserved.
+            © {new Date().getFullYear()} Ecom. All rights reserved.
           </div>
 
           {/* Social Media Icons */}
@@ -28,7 +28,7 @@ const Footer = () => {
           </div>
 
           {/* Navigation Links */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-sm">
+          <div className="flex flex-col items-center sm:flex-row gap-4 sm:gap-8 text-sm">
             <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Privacy Policy</a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Terms of Service</a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Contact Us</a>

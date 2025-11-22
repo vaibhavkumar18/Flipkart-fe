@@ -1,0 +1,10 @@
+.slick-slider,
+.slick-list,
+.slick-track {
+    height: 100% !important;
+}
+
+.slick-slide > div {
+    height: 100% !important;
+    display: flex !important;
+}

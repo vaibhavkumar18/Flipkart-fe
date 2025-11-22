@@ -1,41 +1,42 @@
 import React from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./ImageSlider.css"; // <-- Required for slick height fix
 import Slider from 'react-slick';
 import { useNavigate } from "react-router-dom";
+
 const ImageSlider = () => {
-    const baseURL = import.meta.env.VITE_API_BASE_URL; // ✅ dynamic from .env
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
     const navigate = useNavigate();
+
     const settings = {
-        dots: true,
+        dots: false,          // dots removed
         infinite: true,
-        speed: 800,
+        speed: 600,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 4000,
-        arrows: true,
-        customPaging: () => (
-            <div className="w-3 h-1 rounded-full bg-gray-300" />
-        ),
-        appendDots: (dots) => (
-            <div className="flex justify-center space-x-2 mt-4">{dots}</div>
-        ),
+        autoplaySpeed: 3000,
+        arrows: true
     };
-    const arr = ["pic-1.png", "pic-2.png", "pic-3.png", "pic-4.png", "pic-5.png", "pic-6.png"]
+
+    const arr = ["pic-1.png", "pic-2.png", "pic-3.png", "pic-4.png", "pic-5.png", "pic-6.png"];
+
     return (
-        <div className='w-[97vw] shadow-md lg:h-[40vh] h-[13vh] m-[20px] bg-white rounded-[10px]'>
+        <div className="w-full max-w-[98vw] mx-auto mb-5 mt-5 rounded-lg">
             <Slider {...settings}>
-                {arr.map((image, index) => {
-                    return (
-                        <div key={index} className='w-fit'>
-                            <img src={`${baseURL}/static/${image}`} alt="image" className='object-contain' onClick={() => navigate("/")} />
-                        </div>
-                    )
-                }
-                )}
+                {arr.map((image, index) => (
+                    <div key={index} className="w-full h-[180px] sm:h-[220px] md:h-[300px] lg:h-[380px] xl:h-[430px] overflow-hidden rounded-lg">
+                        <img
+                            src={`${baseURL}/static/${image}`}
+                            alt="slide"
+                            className="w-full h-full object-cover rounded-lg"
+                        />
+                    </div>
+                ))}
             </Slider>
         </div>
     )
 }
-export default ImageSlider
+
+export default ImageSlider;
