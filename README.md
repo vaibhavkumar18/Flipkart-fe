@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 8b4479cd476c586617e3da446e532749a551b75f
 =======
@@ -42,3 +43,6 @@ Flipkart clone using Reactjs
 # Flipkart
 Flipkart clone using Reactjs
 >>>>>>> dd62bd341e20109be42b9f3fac62c6fe9859e17a
+=======
+# Flipkart-fe
+>>>>>>> 0c14c5c87be3062f6701f344f81bb26bb7c2b8ee
