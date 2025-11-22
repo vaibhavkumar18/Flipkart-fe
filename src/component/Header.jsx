@@ -12,7 +12,7 @@ const Header = () => {
     const [isMobile, setIsMobile] = useState(false);
     const dropdownRef = useRef(null);
     const [deviceType, setDeviceType] = useState("");
-
+    const [hamOpen, setHamOpen] = useState(false)
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
@@ -69,135 +69,186 @@ const Header = () => {
 
     return (
         <>
-            <div className="navbar flex justify-evenly items-center shadow-md bg-white pr-[15px] h-[7vh] md:h-[9vh] w-[98%] lg:h-[10vh] z-1000 lg:mt-[20px] mt-[25px] m-[2px] rounded-full">
-                <div className="logo flex justify-center items-center mr-[5px] lg:mr-[2vw]">
-                    <img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg" alt="Flipkart" className='cursor-pointer w-[10vw]' onClick={() => navigate("/")} />
+            <div className="navbar flex lg:justify-evenly md:justify-evenly justify-around items-center shadow-md bg-white pr-[15px] h-[7vh] md:h-[9vh] w-[98%] lg:h-[10vh] z-1000 lg:mt-[20px] mt-[25px] m-[2px] rounded-full">
+                <div className="logo flex justify-center items-center lg:mr-[2vw]">
+                    <img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg" alt="Flipkart" className='cursor-pointer lg:w-[10vw] md:w-[13vw] w-[18vw]' onClick={() => navigate("/")} />
                 </div>
-                <div className="search  flex  justify-center items-center bg-[#f0f5ff] w-[35vw] h-[2vh] lg:w-[45vw] shadow-md lg:h-[6vh] rounded-[10px]  lg:pl-[10px] mr-[5px] ">
+                <div className="search  flex  justify-center items-center bg-[#f0f5ff] w-[55vw] md:w-[40vw] h-[4vh] lg:w-[45vw] shadow-md lg:h-[6vh] rounded-[10px]  lg:pl-[10px] md:pl-[10px] mr-[5px] ">
                     <div className='lg:w-[2vw] w-[1vw] cursor-pointer '>
                         <img src={`${baseURL}/static/search.png`} alt="search" className='w-[1.5vw] lg:w-[2vw] mr-[50px] lg:mr-[5px]' />
                     </div>
-                    <input type='text' className=' text-black w-[30vw] lg:w-[45vw] border-none focus:outline-none lg:h-[6vh] h-[2vh] text-left pl-[10px] text-[5px] lg:text-lg font-normal  cursor-pointer items-center bg-[#f0f5ff] ' placeholder='Search For Products, Brands and More' />
+                    <input type='text' className=' text-black w-[50vw] lg:w-[45vw] md:w-[40vw] border-none focus:outline-none lg:h-[6vh] h-[4vh] text-left pl-[10px] text-[10px] lg:text-lg font-normal  cursor-pointer items-center bg-[#f0f5ff] ' placeholder='Search For Products, Brands and More' />
                 </div>
-                <div className="sections flex justify-center items-center ">
-                    <ul className=" flex justify-center items-center lg:gap-10 gap-2 text-[8px] lg:text-xl font-semibold">
-                        <div className="home flex justify-center items-center lg:hover:scale-110 cursor-pointer" onClick={() => navigate("/")}>
-                            <video src={`${baseURL}/static/home.mp4`} autoPlay loop muted playsInline className='lg:w-[5vw] w-[15px] h-[15px] lg:h-[5vh] flex items-center' />
-                            <li className='cursor-pointer rounded-[10px] text-black lg:text-[20px] text-[12px]' onClick={() => navigate("/")}>Home</li>
-                        </div>
-                        {(isAuthenticated) ? (
-                            <>
-                                <div
-                                    className="relative inline-block"
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                    ref={dropdownRef}
-                                >
-                                    <li className='cursor-pointer hover:scale-110 rounded-[10px] p-[5px]  text-black  '
-                                        onClick={handleToggleDropdown}
-                                    >Hi,&nbsp;{User.user.Username}</li>
-                                    {IsOpen && (<>
-                                        <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[5rem] lg:w-[15rem] bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] rounded-md border z-50  "
-                                        // Close when leaving dropdown
-                                        >
-                                            <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/MyProfile")}>
-                                                <video src={`${baseURL}/static/user.mp4`} autoPlay loop muted playsInline className='lg:w-[5vw] lg:h-[5vh] w-[15px] h-[15px] flex items-center mb-[5px] mt-[5px]' />
-                                                <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" >
-                                                    <li className='cursor-pointer lg:text-sm text-[10px] ' onClick={() => navigate("/MyProfile")}>My Profile</li>
-                                                </div>
-                                            </ul>
-                                            <div className="lg:w-[15rem] w-[5rem] h-[1px] bg-gray-500"></div>
-                                            <ul className=" py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/Order")}>
-                                                <video src={`${baseURL}/static/order_header.mp4`} autoPlay loop muted playsInline className='lg:w-[5vw] lg:h-[5vh] w-[15px] h-[15px] flex items-center mb-[5px] mt-[5px]' />
-                                                <div className="signup-container flex items-center cursor-pointer mb-[5px] mt-[5px]" >
-                                                    <li className='cursor-pointer lg:text-sm text-[10px]  flex items-center  ' onClick={() => navigate("/Order")}>Orders</li>
-                                                </div>
-                                            </ul>
-                                            <div className="lg:w-[15rem] w-[5rem] h-[1px] bg-gray-500"></div>
-                                            <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => handleLogout()}>
-                                                <video src={`${baseURL}/static/logout.mp4`} autoPlay loop muted playsInline className='lg:w-[5vw] lg:h-[5vh] w-[15px] h-[15px] flex items-center mb-[5px] mt-[5px]' />
-                                                <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" >
-                                                    <li className='cursor-pointer lg:text-sm text-[10px]   ' onClick={() => handleLogout()}>Logout</li>
-                                                </div>
-                                            </ul>
-                                            <div className="lg:w-[15rem] w-[5rem] h-[1px] bg-gray-500"></div>
-                                        </div>
-                                    </>)}
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <div
-                                    className="relative inline-block"
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                    ref={dropdownRef}
-                                >
-                                    <div className={`container flex flex-row items-center `} >
-                                        <img src={`${baseURL}/static/login_header.gif`} className='lg:w-[3vw] ml-[5px] lg:h-[6vh] w-[3vw] h-[2vh]' autoPlay loop muted playsInline />
-                                        <li className={`cursor-pointer hover:scale-110 rounded-[10px] p-[5px] text-black lg:text-[20px] text-[12px]`}
-                                            onClick={() => navigate("/Login")}
-                                        >Login
-                                        </li>
-                                        {IsOpen ? (
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5" onClick={handleToggleDropdown}>
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                                            </svg>
-                                        ) : (
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5" onClick={handleToggleDropdown}>
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                            </svg>
-                                        )}
+                {/* desktop code  */}
+                {deviceType == "Desktop/Laptop" || deviceType == "Tablet" ? (
+                    <div className="sections flex justify-center items-center ">
+                        <ul className=" flex justify-center items-center lg:gap-10 md:gap-5 gap-2 text-[8px] lg:text-xl font-semibold">
+                            <div className="home flex justify-center items-center lg:hover:scale-110 cursor-pointer" onClick={() => navigate("/")}>
+                                <li className='cursor-pointer rounded-[10px] text-black lg:text-[20px] md:text-[15px] text-[12px]' onClick={() => navigate("/")}>Home</li>
+                            </div>
+                            {(isAuthenticated) ? (
+                                <>
+                                    <div
+                                        className="relative inline-block"
+                                        onMouseEnter={handleMouseEnter}
+                                        onMouseLeave={handleMouseLeave}
+                                        ref={dropdownRef}
+                                    >
+                                        <li className='cursor-pointer hover:scale-110 rounded-[10px] lg:text-[20px] md:text-[15px] p-[5px]  text-black  '
+                                            onClick={handleToggleDropdown}
+                                        >Hi,&nbsp;{User.user.Username}</li>
+                                        {IsOpen && (<>
+                                            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[5rem] lg:w-[15rem] bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] rounded-md border z-50  "
+                                            // Close when leaving dropdown
+                                            >
+                                                <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/MyProfile")}>
+                                                    <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" >
+                                                        <li className='cursor-pointer lg:text-sm text-[10px] ' onClick={() => navigate("/MyProfile")}>My Profile</li>
+                                                    </div>
+                                                </ul>
+                                                <div className="lg:w-[15rem] w-[5rem] h-[1px] bg-gray-500"></div>
+                                                <ul className=" py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/Order")}>
+                                                    <div className="signup-container flex items-center cursor-pointer mb-[5px] mt-[5px]" >
+                                                        <li className='cursor-pointer lg:text-sm text-[10px]  flex items-center  ' onClick={() => navigate("/Order")}>Orders</li>
+                                                    </div>
+                                                </ul>
+                                                <div className="lg:w-[15rem] w-[5rem] h-[1px] bg-gray-500"></div>
+                                                <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => handleLogout()}>
+                                                    <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" >
+                                                        <li className='cursor-pointer lg:text-sm text-[10px]   ' onClick={() => handleLogout()}>Logout</li>
+                                                    </div>
+                                                </ul>
+                                                <div className="lg:w-[15rem] w-[5rem] h-[1px] bg-gray-500"></div>
+                                            </div>
+                                        </>)}
                                     </div>
-                                    {IsOpen && (<>
-                                        <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[6rem] lg:w-[15rem] bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] rounded-md border z-50  "
-                                        // Close when leaving dropdown
-                                        >
-                                            <ul className="py-2 lg:p-[5px] p-[2px] hover:bg-[#fafafa]">
-                                                <div className="signup-container flex justify-between items-center cursor-pointer lg:mb-[15px] lg:mt-[5px] mb-[8px] mt-[2px]">
-                                                    <span>
-                                                        <li className='cursor-pointer lg:text-sm text-[6px]  ' onClick={() => navigate("/SignUp")}>New Customer?</li>
-                                                    </span>
-                                                    <li className='cursor-pointer lg:text-sm text-[6px]  ' onClick={() => navigate("/SignUp")}>Sign Up</li>
-                                                </div>
-                                            </ul>
+                                </>
+                            ) : (
+                                <>
+                                    <div
+                                        className="relative inline-block"
+                                        onMouseEnter={handleMouseEnter}
+                                        onMouseLeave={handleMouseLeave}
+                                        ref={dropdownRef}
+                                    >
+                                        <div className={`container flex flex-row items-center `} >
+                                            <img src={`${baseURL}/static/login_header.gif`} className='lg:w-[3vw] ml-[5px] lg:h-[6vh] w-[3vw] h-[2vh]' autoPlay loop muted playsInline />
+                                            <li className={`cursor-pointer hover:scale-110 rounded-[10px] p-[5px] text-black lg:text-[20px] text-[12px]`}
+                                                onClick={() => navigate("/Login")}
+                                            >Login
+                                            </li>
+                                            {IsOpen ? (
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5" onClick={handleToggleDropdown}>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                                </svg>
+                                            ) : (
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5" onClick={handleToggleDropdown}>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                </svg>
+                                            )}
+                                        </div>
+                                        {IsOpen && (<>
+                                            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[6rem] lg:w-[15rem] bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] rounded-md border z-50  "
+                                            // Close when leaving dropdown
+                                            >
+                                                <ul className="py-2 lg:p-[5px] p-[2px] hover:bg-[#fafafa]">
+                                                    <div className="signup-container flex justify-between items-center cursor-pointer lg:mb-[15px] lg:mt-[5px] mb-[8px] mt-[2px]">
+                                                        <span>
+                                                            <li className='cursor-pointer lg:text-sm text-[6px]  ' onClick={() => navigate("/SignUp")}>New Customer?</li>
+                                                        </span>
+                                                        <li className='cursor-pointer lg:text-sm text-[6px]  ' onClick={() => navigate("/SignUp")}>Sign Up</li>
+                                                    </div>
+                                                </ul>
 
-                                            <div className="lg:w-[15rem] w-[6rem] h-[1px] bg-gray-300"></div>
-                                            <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/MyProfile")}>
-                                                <video src={`${baseURL}/static/user.mp4`} autoPlay loop muted playsInline className='lg:w-[5vw] lg:h-[5vh] w-[15px] h-[15px] flex items-center mb-[5px] mt-[5px]' />
-                                                <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" onClick={() => navigate("/MyProfile")}>
-                                                    <li className='cursor-pointer lg:text-sm text-[10px]   '>My Profile</li>
+                                                <div className="lg:w-[15rem] w-[6rem] h-[1px] bg-gray-300"></div>
+                                                <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/MyProfile")}>
+                                                    <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" onClick={() => navigate("/MyProfile")}>
+                                                        <li className='cursor-pointer lg:text-sm text-[10px]   '>My Profile</li>
+                                                    </div>
+                                                </ul>
+                                                <div className="lg:w-[15rem] w-[6rem] h-[1px] bg-gray-500"></div>
+                                                <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/Order")}>
+                                                    <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" onClick={() => navigate("/Order")}>
+                                                        <li className='cursor-pointer lg:text-sm text-[10px]   '>Orders</li>
+                                                    </div>
+                                                </ul>
+                                                <div className="lg:w-[15rem] w-[6rem] h-[1px] bg-gray-500"></div>
+                                                <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => handleLogout()}>
+                                                    <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" onClick={() => handleLogout()}>
+                                                        <li className='cursor-pointer lg:text-sm text-[10px]   ' onClick={() => handleLogout()}>Logout</li>
+                                                    </div>
+                                                </ul>
+                                                <div className="lg:w-[15rem] w-[6rem] h-[1px] bg-gray-500"></div>
+
+                                            </div>
+                                        </>)}
+                                    </div>
+                                </>
+                            )}
+                            <div className=" flex flex-row items-center lg:hover:scale-110 cursor-pointer mr-[5px]" onClick={() => navigate("/CartPage")}>
+                                <li className='cursor-pointer lg:hover:scale-110 rounded-[10px] text-[10px] md:text-[15px]  lg:text-[22px] text-black' onClick={() => navigate("/CartPage")}>Cart</li>
+                            </div>
+
+                        </ul>
+                    </div>
+                ) : (
+                    <>
+                        <div className="mobile">
+                            {!hamOpen ? (
+                                <div className="hamburger cursor-pointer" onClick={() => { setHamOpen(!hamOpen) }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width={"25px"} viewBox="0 0 24 24" fill="currentColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>
+                                </div>
+                            ) :
+                                (
+                                    <>
+                                        <div
+                                            className={`slide fixed top-0 right-0 h-screen xxs:w-full w-[50vw] bg-white z-[9999] transform transition-transform duration-500 ease-[cubic-bezier(.17,.67,.83,.67)] ${hamOpen ? "translate-x-0" : "-translate-x-full"}`}
+                                        >
+                                            <div className="containe ml-[30px]">
+                                                <div className="close w-full flex justify-start mt-5 mb-5 cursor-pointer" onClick={() => { setHamOpen(!hamOpen) }}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className='w-[30px] cursor-pointer ' viewBox="0 0 24 24" fill="currentColor"><path d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z"></path></svg>
                                                 </div>
-                                            </ul>
-                                            <div className="lg:w-[15rem] w-[6rem] h-[1px] bg-gray-500"></div>
-                                            <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/Order")}>
-                                                <video src={`${baseURL}/static/order_header.mp4`} autoPlay loop muted playsInline className='lg:w-[5vw] lg:h-[5vh] w-[15px] h-[15px] flex items-center mb-[5px] mt-[5px]' />
-                                                <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" onClick={() => navigate("/Order")}>
-                                                    <li className='cursor-pointer lg:text-sm text-[10px]   '>Orders</li>
+
+                                                <div className="content xxs:text-base text-xl flex flex-col gap-5">
+                                                    <h1 className='cursor-pointer' onClick={() => {
+                                                        setHamOpen(!hamOpen)
+                                                        navigate("/")
+                                                    }}>Home</h1>
+                                                    <h1 className='cursor-pointer' onClick={() => {
+                                                        setHamOpen(!hamOpen)
+                                                        navigate("/MyProfile")
+                                                    }}>MyProfile</h1>
+                                                    <h1 className='cursor-pointer' onClick={() => {
+                                                        setHamOpen(!hamOpen)
+                                                        navigate("/Order")
+                                                    }}>Orders</h1>
+                                                    <h1 className='cursor-pointer' onClick={() => {
+                                                        setHamOpen(!hamOpen)
+                                                        navigate("/CartPage")
+                                                    }}>Cart</h1>
+                                                    <h1 className='cursor-pointer' onClick={() => {
+                                                        setHamOpen(!hamOpen)
+                                                        handleLogout()
+                                                    }}>Logout</h1>
                                                 </div>
-                                            </ul>
-                                            <div className="lg:w-[15rem] w-[6rem] h-[1px] bg-gray-500"></div>
-                                            <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => handleLogout()}>
-                                                <video src={`${baseURL}/static/logout.mp4`} autoPlay loop muted playsInline className='lg:w-[5vw] lg:h-[5vh] w-[15px] h-[15px] flex items-center mb-[5px] mt-[5px]' />
-                                                <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" onClick={() => handleLogout()}>
-                                                    <li className='cursor-pointer lg:text-sm text-[10px]   ' onClick={() => handleLogout()}>Logout</li>
-                                                </div>
-                                            </ul>
-                                            <div className="lg:w-[15rem] w-[6rem] h-[1px] bg-gray-500"></div>
+
+                                            </div>
 
                                         </div>
-                                    </>)}
-                                </div>
-                            </>
-                        )}
-                        <div className=" flex flex-row items-center lg:hover:scale-110 cursor-pointer mr-[5px]" onClick={() => navigate("/CartPage")}>
-                            <video src={`${baseURL}/static/shopping-cart.mp4`} autoPlay loop muted playsInline className='lg:w-[5vw] w-[15px] h-[15px] lg:h-[5vh] flex items-center' />
-                            <li className='cursor-pointer lg:hover:scale-110 rounded-[10px] text-[10px]  lg:text-[22px] text-black' onClick={() => navigate("/CartPage")}>Cart</li>
-                        </div>
 
-                    </ul>
-                </div>
-            </div>
+
+
+
+                                    </>
+                                )}
+
+
+                        </div>
+                    </>
+
+                )}
+
+            </div >
         </>
     )
 }
