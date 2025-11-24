@@ -50,23 +50,10 @@ const SignUp = () => {
     return (
         <>
             <div className="containe items-center flex justify-center w-full mt-[40px] ">
-                <div className="signup-containe lg:w-[60vw] w-[85vw] shadow-[0_20px_15px_5px_rgb(0_0_0_/_0.15),_0_10px_20px_-4px_rgb(0_0_0_/_0.15)] max-h-[100vh] flex  ">
+                <div className="signup-containe lg:w-[55vw] m-[20px] md:w-[70vw] sm:w-[40vh] shadow-[0_20px_15px_5px_rgb(0_0_0_/_0.15),_0_10px_20px_-4px_rgb(0_0_0_/_0.15)] lg:max-h-[110vh] md:max-h-[100vh] max-h-[80vh] flex p-0 rounded-xl border-2 border-black">
 
-                    <div className="left-block lg:w-[25vw] lg:h-[80vh] md:h-[85vh] h-[90vh] w-[35vw] lg:pr-0 pr-[10px] border-black border-2 bg-[#2874f0] text-white flex items-center flex-col">
-                        <div className='h-[50vh] lg:h-[20vh]'>
-                            <span className=' heading'>
-                                <p className='lg:ml-[50px] ml-[20px] mt-[40px] lg:text-3xl md:text-2xl text-xl font-bold'>
-                                    <span>Looks like you're new here!</span>
-                                </p>
-                            </span>
-                            <p className='lg:ml-[50px] ml-[20px] mt-[20px] mr-[5px] lg:mr-0 '>
-                                <span className=' lg:text-xl md:text-lg text-[15px]'>Sign up with your email to get started</span>
-                            </p>
-                        </div>
+                    <div className="left-block lg:w-[25vw] lg:h-[80vh]  w-[35vw] lg:pr-0 pr-[10px]  bg-[#2874f0] text-white flex items-center flex-col rounded-xl">
 
-                        <div className="img bg-cover bg-center relative ">
-                            <img src={`${baseURL}/static/signup.png`} alt="Login" className='relative lg:top-[100px] bottom-[10px]' />
-                        </div>
                     </div>
 
                     <div className="right-block lg:w-[35vw] w-[60vw]">

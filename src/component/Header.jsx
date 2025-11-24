@@ -147,7 +147,7 @@ const Header = () => {
                                             )}
                                         </div>
                                         {IsOpen && (<>
-                                            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[6rem] lg:w-[15rem] bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] rounded-md border z-50  "
+                                            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[5rem] lg:w-[10rem] bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] rounded-md border z-50  "
                                             // Close when leaving dropdown
                                             >
                                                 <ul className="py-2 lg:p-[5px] p-[2px] hover:bg-[#fafafa]">

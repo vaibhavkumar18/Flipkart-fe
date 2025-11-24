@@ -86,25 +86,28 @@ const Login = () => {
 
     return (
         <>
-            <div className="containe items-center flex justify-center mt-[40px] w-full ">
-                <div className="login-containe  lg:w-[60vw] m-[20px] md:w-[70vw] sm:w-[100vh] shadow-[0_20px_15px_5px_rgb(0_0_0_/_0.15),_0_10px_20px_-4px_rgb(0_0_0_/_0.15)] max-h-[110vh] flex p-0  ">
+            <div
+                className="max-h-screen w-full flex justify-center items-center py-[40px]"
+                
+            >
+                <div className="login-containe  lg:w-[45vw] m-[20px] md:w-[70vw] sm:w-[40vh] shadow-[0_20px_15px_5px_rgb(0_0_0_/_0.15),_0_10px_20px_-4px_rgb(0_0_0_/_0.15)] lg:max-h-[110vh] md:max-h-[100vh] max-h-[80vh] flex p-0 rounded-xl" >
 
-                    <div className="left-block lg:w-[25vw] md:w-[40vw] sm:w-[30vw] w-[35vw] lg:h-[70vh] md:h-[50vh]  h-[70vh] border-2 border-black bg-[#2874f0] text-white">
-                        <span >
-                            <p className='lg:ml-[50px] ml-[20px] mt-[40px]'>
-                                <span className='lg:text-4xl md:text-4xl text-3xl font-bold'>Login</span>
-                            </p>
-                        </span>
-                        <p className='lg:ml-[50px] ml-[20px] lg:mr-[7px] mr-[10px] mt-[20px]'>
-                            <span className=' lg:text-xl md:text-xl text-[11px]'>Get access to your Orders, Wishlist and Recommendations</span>
-                        </p>
-                        <div className="img bg-cover bg-center relative lg:top-[110px] top-[170px] ">
-                            <img src={`${baseURL}/static/login.png`} alt="Login" className='relative' />
-                        </div>
+                    <div className="left-block lg:w-[20vw] md:w-[30vw] sm:w-[25vw] w-[30vw] lg:h-[70vh] md-h-[70vh] rounded-xl   ] text-white" style={{
+                    backgroundImage: `url(${baseURL}/static/image.png)`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                }}>
+                   
+                     
                     </div>
 
-                    <div className="right-block lg:w-[35vw] md:w-[40vw] sm:w-[45vw] w-[56vw]">
-                        <div className="container flex justify-center items-center flex-col lg:ml-[50px] ml-[20px] mt-[50px] gap-[25px] ">
+                    <div className="right-block lg:w-[40vw] md:w-[40vw] sm:w-[40vw] w-[50vw]">
+                        <div className="heading ml-[20px] mt-[30px] flex flex-col gap-2" >
+                            <h1 className='lg:text-3xl md:text-3xl text-xl'>Welcome Back</h1>
+                            <p className='lg:text-sm md:text-sm text-[15px]'>Access you Orders and Wishlist</p>
+                        </div>
+                        <div className="container flex justify-center items-center flex-col lg:ml-[30px] ml-[20px] mt-[15px] gap-[25px] ">
 
                             <div className="relative w-full email-username  ">
                                 <input
@@ -148,13 +151,13 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="login-btn flex justify-center items-center mt-[40px]">
-                            <button className='border-black border-2 w-[28vw] lg:text-xl md:text-lg  text-sm font-bold h-[6vh] bg-orange-500 text-white hover:scale-90' onClick={(e) => {
+                            <button className='rounded-full w-[28vw] lg:text-xl md:text-lg  text-sm font-bold h-[6vh] bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] text-white hover:scale-90' onClick={(e) => {
 
                                 handleLogin(e)
                             }}>Login</button>
 
                         </div>
-                        <div className="relative lg:p-4 p-0 lg:bottom-[-170px] bottom-[-140px] pb-[80px]">
+                        <div className="relative lg:p-4 p-0 lg:bottom-[-110px] md:bottom-[-50px] bottom-[-50px] pb-[80px]">
                             <div className="create-account left-0 flex justify-center items-center lg:flex-row flex-col  lg:gap-[5px] lg:text-md text-sm gap-0">
                                 <div onClick={() => { navigate("/SignUp") }} className="text-blue-500 cursor-pointer ">New to Flipkart? </div>
                                 <div onClick={() => { navigate("/SignUp") }} className="text-blue-500 cursor-pointer">Create Account</div>
