@@ -82,8 +82,6 @@ const Login = () => {
 
     };
 
-
-
     return (
         <>
             <div
@@ -92,7 +90,7 @@ const Login = () => {
             >
                 <div className="login-containe  lg:w-[45vw] m-[20px] md:w-[70vw] sm:w-[40vh] shadow-[0_20px_15px_5px_rgb(0_0_0_/_0.15),_0_10px_20px_-4px_rgb(0_0_0_/_0.15)] lg:max-h-[110vh] md:max-h-[100vh] max-h-[80vh] flex p-0 rounded-xl" >
 
-                    <div className="left-block lg:w-[20vw] md:w-[30vw] sm:w-[25vw] w-[30vw] lg:h-[70vh] md-h-[70vh] rounded-xl   ] text-white" style={{
+                    <div className="left-block lg:w-[20vw] md:w-[30vw] sm:w-[25vw] w-[30vw] lg:h-[70vh] md-h-[70vh] rounded-l-xl   ] text-white" style={{
                     backgroundImage: `url(${baseURL}/static/image.png)`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",

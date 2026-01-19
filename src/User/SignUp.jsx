@@ -49,15 +49,19 @@ const SignUp = () => {
     }
     return (
         <>
-            <div className="containe items-center flex justify-center w-full mt-[40px] ">
-                <div className="signup-containe lg:w-[55vw] m-[20px] md:w-[70vw] sm:w-[40vh] shadow-[0_20px_15px_5px_rgb(0_0_0_/_0.15),_0_10px_20px_-4px_rgb(0_0_0_/_0.15)] lg:max-h-[110vh] md:max-h-[100vh] max-h-[80vh] flex p-0 rounded-xl border-2 border-black">
+            <div className="containe items-center flex justify-center w-full mt-[5px] ">
+                <div className="signup-containe lg:w-[55vw] m-[20px] md:w-[70vw] sm:w-[40vh] shadow-[0_20px_15px_5px_rgb(0_0_0_/_0.15),_0_10px_20px_-4px_rgb(0_0_0_/_0.15)] lg:max-h-[110vh] md:max-h-[100vh] max-h-[80vh] flex p-0 rounded-xl ">
 
-                    <div className="left-block lg:w-[25vw] lg:h-[80vh]  w-[35vw] lg:pr-0 pr-[10px]  bg-[#2874f0] text-white flex items-center flex-col rounded-xl">
+                    <div className="left-block lg:w-[25vw] lg:h-[80vh]  w-[40vw] lg:pr-0 pr-[10px] text-white flex items-center flex-col rounded-xl">
+                        <img src={`${baseURL}/static/signup2.png`} alt="signup" className="w-full object-cover h-full rounded-l-xl" />
 
                     </div>
 
-                    <div className="right-block lg:w-[35vw] w-[60vw]">
-                        <div className="container flex justify-center items-center flex-col lg:ml-[50px] md:ml-[40px] ml-[20px] mt-[50px] gap-[25px]">
+                    <div className="right-block lg:w-[35vw] w-[60vw] ">
+                        <h2 className="text-2xl font-semibold mt-[20px] mb-[5px] lg:ml-[40px] md:ml-[40px] ml-[20px]">Create Your Account</h2>
+                        <p className="text-gray-500 lg:ml-[40px] md:ml-[40px] ml-[20px]">Sign up to get started</p>
+
+                        <div className="container flex justify-center items-center flex-col  mt-[20px] gap-[25px] lg:ml-[40px] md:ml-[40px] ml-[20px]">
                             {/* Name  */}
                             <div className="relative w-full Name  ">
                                 <input
@@ -151,13 +155,13 @@ const SignUp = () => {
                         </div>
 
                         {/* Sign Up  */}
-                        <div className="signup-btn flex justify-center items-center mt-[40px]">
-                            <button className='border-black border-2 w-[28vw] lg:text-xl md:text-lg  text-sm font-bold h-[6vh] bg-orange-500 text-white hover:scale-90' onClick={() => Signup()} disabled={userdata.Name == "" && userdata.Email == "" && userdata.Password == ""}>Sign Up</button>
+                        <div className="signup-btn mt-[20px]  flex justify-center items-center">
+                            <button className='rounded-full w-[28vw] lg:text-xl md:text-lg  text-sm font-bold h-[6vh] bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] text-white hover:scale-90' onClick={() => Signup()} disabled={userdata.Name == "" && userdata.Email == "" && userdata.Password == ""}>Sign Up</button>
                         </div>
 
                         {/* Login  */}
-                        <div className="relative lg:p-4 lg:bottom-[-87px] bottom-[-80px] lg:text-lg md:text-lg text-base">
-                            <div className="create-account left-0 flex justify-center lg:flex-row flex-col items-center gap-[5px] md:flex-row">
+                        <div className="relative lg:p-4 lg:bottom-[-37px] bottom-[-5px] lg:text-lg md:text-lg text-base">
+                            <div className="create-account left-0 flex justify-center lg:flex-row flex-row items-center gap-[5px] md:flex-row">
                                 <div onClick={() => { navigate("/Login") }} className="text-blue-500 cursor-pointer ">Existing User? </div>
                                 <div onClick={() => { navigate("/Login") }} className="text-blue-500 "> Log in</div>
                             </div>
