@@ -213,6 +213,15 @@ const Header = () => {
                                                         setHamOpen(!hamOpen)
                                                         navigate("/")
                                                     }}>Home</h1>
+
+                                                    <h1 className='cursor-pointer' onClick={() => {
+                                                        setHamOpen(!hamOpen)
+                                                        navigate("/Login")
+                                                    }}>Login</h1>
+                                                    <h1 className='cursor-pointer' onClick={() => {
+                                                        setHamOpen(!hamOpen)
+                                                        navigate("/SignUp")
+                                                    }}>SignUp</h1>
                                                     <h1 className='cursor-pointer' onClick={() => {
                                                         setHamOpen(!hamOpen)
                                                         navigate("/MyProfile")
