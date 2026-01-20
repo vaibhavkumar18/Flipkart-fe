@@ -1,65 +1,86 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const initialState = {
-    user: null,
-    isAuthenticated: false,
+  user: null,              // ONLY user object
+  isAuthenticated: false
 };
 
 const userslice = createSlice({
-    name: "user",
-    initialState,
-    reducers: {
-        loginSuccess: (state, action) => {
-            state.user = action.payload;
-            state.isAuthenticated = true;
-            console.log('User  logged in:', state.user); // Log when user logs in
-        },
-        logout: (state) => {
-            state.user = null;
-            state.isAuthenticated = false;
-            console.log('User  logged out'); // Log when user logs out
-        },
-        signup: (state, action) => {
-            state.user = action.payload;
-            state.isAuthenticated = true;
-            console.log('User  signed up:', state.user); // Log when user signs up
-        },
-        updateprofile: (state, action) => {
-            // Merge the updated fields into current user object
-            if (state.user) {
-                state.user = {
-                    ...state.user,
-                    ...action.payload,  // Ensure that all fields (like Phone_Number) are in the payload
-                };
-                console.log('User profile updated:', state.user);
-            } else {
-                console.warn('No user found in state to update');
-            }
-        },
-        AddAddress: (state, action) => {
-            if (!Array.isArray(state.user.Address)) {
-                state.user.Address = []; // Ensure it's an array
-            }
-            state.user.Address.push(action.payload);
-            console.log('address added:', state.user);
-        },
-        DeleteAddress: (state, action) => {
-            // Remove address by ID or index
-            state.user.Address = state.user.Address.filter(addr => addr.id !== action.payload);
-        },
-        updateAddress: (state, action) => {
-            const index = state.user.Address.findIndex(addr => addr.id === action.payload.id);
-            if (index !== -1) {
-                state.user.Address[index] = action.payload;
-            }
-        },
+  name: "user",
+  initialState,
+  reducers: {
 
+    // ✅ LOGIN (same name as before)
+    loginSuccess: (state, action) => {
+      state.user = action.payload.user;   // ONLY user
+      state.isAuthenticated = true;
+    },
 
+    // ✅ SIGNUP (same name as before)
+    signup: (state, action) => {
+      state.user = action.payload.user;   // ONLY user
+      state.isAuthenticated = true;
+    },
+
+    // ✅ LOGOUT
+    logout: (state) => {
+      state.user = null;
+      state.isAuthenticated = false;
+    },
+
+    // ✅ UPDATE PROFILE
+    updateprofile: (state, action) => {
+      if (!state.user) return;
+
+      state.user = {
+        ...state.user,
+        ...action.payload
+      };
+    },
+
+    // ✅ ADD ADDRESS
+    AddAddress: (state, action) => {
+      if (!state.user) return;
+
+      if (!Array.isArray(state.user.Address)) {
+        state.user.Address = [];
+      }
+
+      state.user.Address.push(action.payload);
+    },
+
+    // ✅ DELETE ADDRESS
+    DeleteAddress: (state, action) => {
+      if (!state.user || !Array.isArray(state.user.Address)) return;
+
+      state.user.Address = state.user.Address.filter(
+        addr => addr.id !== action.payload
+      );
+    },
+
+    // ✅ UPDATE ADDRESS
+    updateAddress: (state, action) => {
+      if (!state.user || !Array.isArray(state.user.Address)) return;
+
+      const index = state.user.Address.findIndex(
+        addr => addr.id === action.payload.id
+      );
+
+      if (index !== -1) {
+        state.user.Address[index] = action.payload;
+      }
     }
+  }
 });
 
-export const { loginSuccess, logout, signup, updateprofile, AddAddress, DeleteAddress, updateAddress } = userslice.actions;
+export const {
+  loginSuccess,
+  signup,
+  logout,
+  updateprofile,
+  AddAddress,
+  DeleteAddress,
+  updateAddress
+} = userslice.actions;
+
 export default userslice.reducer;
-
-

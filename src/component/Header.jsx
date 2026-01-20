@@ -96,7 +96,7 @@ const Header = () => {
                                     >
                                         <li className='cursor-pointer hover:scale-110 rounded-[10px] lg:text-[20px] md:text-[15px] p-[5px]  text-black  '
                                             onClick={handleToggleDropdown}
-                                        >Hi,&nbsp;{User.user.Username}</li>
+                                        >Hi,&nbsp;{User.user?.Username}</li>
                                         {IsOpen && (<>
                                             <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[5rem] lg:w-[10rem] bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] rounded-md border z-50  "
                                             // Close when leaving dropdown

@@ -33,7 +33,9 @@ const Login = () => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
+                credentials: "include"   // 🔥 REQUIRED
             });
+
         } catch (err) {
             console.error("Fetch error:", err);
             setErrorMessage("Server unreachable.");
@@ -56,11 +58,20 @@ const Login = () => {
 
                 if (data.success && data.user) {
                     console.log("Logged In")
-                    const profileRes = await fetch(`${baseURL}/api/user/profile/${data.user.Username}`);
+                    const profileRes = await fetch(`${baseURL}/api/user/profile`, {
+                        credentials: "include"
+                    });
+
                     console.log("profileRes", profileRes)
                     const fullUser = await profileRes.json();
-                    console.log("fullUser", fullUser)
+
+                    if (!profileRes.ok) {
+                        console.error("Profile fetch failed", fullUser);
+                        return;
+                    }
+
                     dispatch(loginSuccess(fullUser));
+
                     setislogin(true);
                     navigate("/");
                 } else {
@@ -86,18 +97,18 @@ const Login = () => {
         <>
             <div
                 className="max-h-screen w-full flex justify-center items-center py-[40px]"
-                
+
             >
                 <div className="login-containe  lg:w-[45vw] m-[20px] md:w-[70vw] sm:w-[40vh] shadow-[0_20px_15px_5px_rgb(0_0_0_/_0.15),_0_10px_20px_-4px_rgb(0_0_0_/_0.15)] lg:max-h-[110vh] md:max-h-[100vh] max-h-[80vh] flex p-0 rounded-xl" >
 
                     <div className="left-block lg:w-[20vw] md:w-[30vw] sm:w-[25vw] w-[30vw] lg:h-[70vh] md-h-[70vh] rounded-l-xl   ] text-white" style={{
-                    backgroundImage: `url(${baseURL}/static/image.png)`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                }}>
-                   
-                     
+                        backgroundImage: `url(${baseURL}/static/image.png)`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                    }}>
+
+
                     </div>
 
                     <div className="right-block lg:w-[40vw] md:w-[40vw] sm:w-[40vw] w-[50vw]">

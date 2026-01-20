@@ -35,6 +35,7 @@ const SignUp = () => {
                 })
             });
             const data = await response.json()
+            console.log("Signup Response Data:", data);
             if (data.success) {
                 dispatch(signup({
                     ...userdata,
