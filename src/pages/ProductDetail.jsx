@@ -64,14 +64,14 @@ const ProductDetail = () => {
 
                                     <div className="add-to-cart-btn m-[15px]">
                                         {isAddToCart ? (
-                                            <button className="w-full sm:w-40 px-4 py-2 text-sm sm:text-base font-bold bg-orange-500 text-white rounded-md hover:scale-95 transition-all" onClick={
+                                            <button className="w-full sm:w-40 px-4 py-2 text-sm sm:text-base font-bold rounded-full bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] text-white  hover:scale-90 transition duration-200" onClick={
                                                 () => {
                                                     navigate("/CartPage")
                                                 }
                                             }>Got To Cart</button>
                                         ) :
                                             (
-                                                <button className="w-full sm:w-40 px-4 py-2 text-sm sm:text-base font-bold bg-orange-500 text-white rounded-md hover:scale-95 transition-all" onClick={
+                                                <button className="w-full sm:w-40 px-4 py-2 text-sm sm:text-base font-bold rounded-full bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] text-white hover:scale-90 transition duration-200" onClick={
                                                     () => {
                                                         setisAddToCart(true)
                                                         addToCart()
@@ -81,7 +81,7 @@ const ProductDetail = () => {
                                             )}
                                     </div>
                                     <div className="buy-now-btn">
-                                        <button className="w-full sm:w-40 px-4 py-2 text-sm sm:text-base font-bold bg-orange-500 text-white rounded-md hover:scale-95 transition-all" onClick={() => {
+                                        <button className="w-full sm:w-40 px-4 py-2 text-sm sm:text-base font-bold rounded-full bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] text-white  hover:scale-90 transition duration-200 " onClick={() => {
                                             addToCart()
                                             navigate("/CartPage")
                                         }}>Buy Now</button>

@@ -143,7 +143,7 @@ const MyProfile = () => {
                 <img src={`https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90`} alt="Login to access" className="w-48 h-48 mb-6" />
                 <h2 className="text-xl font-semibold text-gray-800 mb-2">Missing Cart items?</h2>
                 <p className="text-sm text-gray-500 mb-6">Login to see the items you added previously</p>
-                <button onClick={() => navigate('/Login')} className="bg-[#fb641b] text-white px-12 py-3 rounded-sm text-sm font-semibold shadow-sm">
+                <button onClick={() => navigate('/Login')} className="rounded-full bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] text-white px-12 py-3  text-sm font-semibold shadow-sm hover:scale-90 transition duration-200">
                     Login
                 </button>
             </div>

@@ -156,7 +156,7 @@ const SignUp = () => {
 
                         {/* Sign Up  */}
                         <div className="signup-btn mt-[20px]  flex justify-center items-center">
-                            <button className='rounded-full w-[28vw] lg:text-xl md:text-lg  text-sm font-bold h-[6vh] bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] text-white hover:scale-90' onClick={() => Signup()} disabled={userdata.Name == "" && userdata.Email == "" && userdata.Password == ""}>Sign Up</button>
+                            <button className='rounded-full w-[28vw] lg:text-xl md:text-lg  text-sm font-bold h-[6vh] bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] text-white hover:scale-90 transition duration-200' onClick={() => Signup()} disabled={userdata.Name == "" && userdata.Email == "" && userdata.Password == ""}>Sign Up</button>
                         </div>
 
                         {/* Login  */}

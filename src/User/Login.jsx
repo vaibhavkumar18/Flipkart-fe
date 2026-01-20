@@ -149,7 +149,7 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="login-btn flex justify-center items-center mt-[40px]">
-                            <button className='rounded-full w-[28vw] lg:text-xl md:text-lg  text-sm font-bold h-[6vh] bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] text-white hover:scale-90' onClick={(e) => {
+                            <button className='rounded-full w-[28vw] lg:text-xl md:text-lg  text-sm font-bold h-[6vh] bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] text-white hover:scale-90 transition duration-200' onClick={(e) => {
 
                                 handleLogin(e)
                             }}>Login</button>

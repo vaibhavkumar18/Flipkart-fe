@@ -317,9 +317,8 @@ const Order = () => {
                         {/* Login Button */}
                         <button
                             onClick={() => navigate('/login')}
-                            className="bg-[#fb641b] hover:scale-110 text-white px-6 py-2 rounded-lg text-sm font-semibold shadow-sm flex flex-row items-center transition duration-200"
+                            className="rounded-full bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] hover:scale-90 text-white px-6 py-2  text-md font-semibold shadow-sm flex flex-row items-center transition duration-200"
                         >
-                            <img src={`${baseURL}/static/login.gif`} className='w-[2vw] h-[4vh]' alt="login" />
                             <div>Login</div>
                         </button>
                     </div>

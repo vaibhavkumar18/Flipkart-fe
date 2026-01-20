@@ -105,9 +105,9 @@ const CartPage = () => {
                             {/* Action Button */}
                             <button
                                 onClick={() => navigate('/')}
-                                className="bg-blue-600 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition flex flex-row items-center hover:scale-110"
+                                className="rounded-full bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] text-white px-6 py-3  shadow hover:bg-blue-700 transition duration-200 flex flex-row items-center hover:scale-90 text-md "
                             >
-                                <img src={`${baseURL}/static/shopping-bag.gif`} className='w-[3vw] h-[5vh] flex items-center' />
+                    
                                 Continue Shopping
                             </button>
                         </div>
@@ -221,8 +221,8 @@ const CartPage = () => {
                                             &nbsp;${totalAmount.toFixed(2)}
                                         </div>
                                         <div className="line lg:w-[17vw] md:w-[30vw] w-[1px] lg:h-[1px] md:h-[1px] h-[8vh] bg-black m-[20px]"></div>
-                                        <div className="checkout lg:text-[20px] md:text-[20px] flex justify-center items-center lg:mr-[25px] cursor-pointer hover:scale-95 rounded-lg border-2 border-black">
-                                            <button className="checkout rounded-lg lg:p-[5px] md:px-[15px] p-[5px] lg:w-full md:w-full w-full lg:h-[7vh] flex flex-row items-center hover:scale-95 justify-center lg:text-[2vw] md:text-[3vw] text-[4vw]" disabled={!cart} onClick={() => {
+                                        <div className="checkout lg:text-[20px] md:text-[20px] flex justify-center items-center lg:mr-[25px] cursor-pointer hover:scale-95 rounded-lg border-2 border-black transition duration-200">
+                                            <button className="checkout rounded-lg lg:p-[8px] md:px-[15px] p-[5px] lg:w-full md:w-full w-full lg:h-[7vh] flex flex-row items-center hover:scale-95 justify-center lg:text-[2vw] md:text-[3vw] text-[4vw] transition duration-200" disabled={!cart} onClick={() => {
                                                 if (cart) {
                                                     Checkout();
 
@@ -231,7 +231,6 @@ const CartPage = () => {
                                                     navigate("/Checkout_Payment_Address")
                                                 }
                                             }}>
-                                                <img src={`${baseURL}/static/checkout.gif`} className='w-[3vw] lg:h-[6vh] md:h-[6vh] h-[4vh]' alt="checkout" />
                                                 <div>Checkout</div>
 
                                             </button>

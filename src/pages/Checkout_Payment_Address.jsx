@@ -166,7 +166,6 @@ const Checkout_Payment_Address = () => {
 
           <div className="address lg:w-[50%] md:w-[50%] w-full flex items-center flex-col">
             <div className="heading lg:mt-[2vw] md:mt-[2vw] mt-[3vw] mb-[2vw] items-center flex flex-row  lg:w-[35vw] md:w-[35vw] w-full justify-center">
-              <img src={`${baseURL}/static/address.gif`} className='object-contain lg:w-[4vw] md:w-[4vw] w-[6vw] ' alt="" />
               <h1 className='billing-address lg:text-[2.5vw] md:text-[2.5vw] text-[5vw] '>Billing Address</h1>
             </div>
 
@@ -219,9 +218,8 @@ const Checkout_Payment_Address = () => {
               )}
             </div>
 
-            <div className="add-new-address border-2 border-black lg:w-[30vw] md:w-[30vw] w-full flex items-center justify-center lg:mt-[2vw] md:mt-[2vw] mt-[3vw] rounded-md hover:scale-90 cursor-pointer" onClick={() => { RedirectToPage() }}>
+            <div className="add-new-address border-2 border-black lg:w-[30vw] md:w-[30vw] w-full flex items-center justify-center lg:mt-[2vw] md:mt-[2vw] mt-[3vw] rounded-md hover:scale-90 cursor-pointer transition duration-200" onClick={() => { RedirectToPage() }}>
               <div className='lg:text-[25px] md:text-[15px] text-[20px] p-[5px] uppercase flex flex-row items-center'>
-                <img src={`${baseURL}/static/location.gif`} className='lg:w-[4vw] md:w-[4vw] w-[8vw] object-contain ' alt="location" />
                 <div>Add New Address</div>
               </div>
             </div>
@@ -232,7 +230,7 @@ const Checkout_Payment_Address = () => {
           <div className="payment lg:w-[50%] flex flex-col items-center md:w-[50%] pl-[4vw] w-full">
 
             <div className="payment-header mt-[1.5vw] relative lg:right-10  md:right-10 text-center flex flex-row items-center right-0  ">
-              <img src={`${baseURL}/static/bill.gif`} className='lg:w-[5vw] md:w-[5vw] w-[8vw] object-contain' autoPlay loop muted playsInline />
+     
               <h1 className='lg:text-[2.5vw] md:text-[2.5vw] text-[4vw]'>Order Summary</h1>
               {/* <div className="line w-[18vw] bg-cyan-500 h-[2px] "></div> */}
             </div>
@@ -281,15 +279,14 @@ const Checkout_Payment_Address = () => {
               </div>
             </div>
 
-            <div className="checkout border-2 border-black lg:w-[30vw] md:w-[30vw] w-full h-[7vh] mt-[4vw] lg:text-[25px] md:text-[25px] text-[22px] flex items-center justify-center cursor-pointer hover:scale-90 rounded-lg" disabled={selectedAddress == null} onClick={() => {
+            <div className="checkout border-2 border-black lg:w-[30vw] md:w-[30vw] w-full h-[7vh] mt-[4vw] lg:text-[25px] md:text-[25px] text-[22px] flex items-center justify-center cursor-pointer hover:scale-90 rounded-lg transition duration-200" disabled={selectedAddress == null} onClick={() => {
               if (selectedAddress == null) {
                 alert("Select Billing Address!!!")
               }
               Checkout();
             }} >
-              <div className="checkoutbtn uppercase flex flex-row items-center ">
-                <img src={`${baseURL}/static/checkout.gif`} className='lg:w-[3vw] md:w-[3vw] w-[8vw] lg:text-base md:text-sm text-xs object-contain' alt="checkout" />
-                <div>Checkout</div>
+              <div className="checkoutbtn uppercase flex flex-row items-center  transition duration-200">
+                Checkout
               </div>
             </div>
 
