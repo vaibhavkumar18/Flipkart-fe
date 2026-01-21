@@ -2,16 +2,28 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const baseURL = import.meta.env.VITE_API_BASE_URL; // ✅ dynamic from .env
 
 // Async function to fetch cart from database
-export const fetchCart = createAsyncThunk("cart/fetchCart", async (username) => {
-    const response = await fetch(`${baseURL}/CartPage/${username}`);
-    const data = await response.json();
-    return data;
-});
-export const fetchorder = createAsyncThunk("cart/fetchCart", async (username) => {
-    const response = await fetch(`${baseURL}/Order/${username}`);
-    const data = await response.json();
-    return data;
-});
+export const fetchCart = createAsyncThunk(
+    "cart/fetchCart",
+    async () => {
+        const res = await fetch(`${baseURL}/CartPage`, {
+            credentials: "include"
+        });
+        return await res.json();
+    }
+);
+
+
+export const fetchorder = createAsyncThunk(
+    "cart/fetchOrder",
+    async () => {
+        const response = await fetch(`${baseURL}/Order`, {
+            credentials: "include"
+        });
+        const data = await response.json();
+        return data;
+    }
+);
+
 
 const cartSlice = createSlice({
     name: "cart",

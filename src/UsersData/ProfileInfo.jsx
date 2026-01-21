@@ -9,7 +9,6 @@ const ProfileInfo = () => {
     const baseURL = import.meta.env.VITE_API_BASE_URL; // ✅ dynamic from .env
     const dispatch = useDispatch();
     const User = useSelector((state) => state.user);
-    console.log(User)
     const [showeditprofileinfo, setshoweditprofileinfo] = useState(true)
     const [showemailedit, setshowemailedit] = useState(true)
     const [showphonenumedit, setshowphonenumedit] = useState(true)
@@ -17,21 +16,21 @@ const ProfileInfo = () => {
     const handlechange = (e) => {
         setprofile({ ...profile, [e.target.name]: e.target.value })
     }
-    console.log("Profile-phonenum", profile.Phone_Number)
-    console.log("User-phonenum", User.user.Phone_Number)
     const handleSave = async () => {
         if (profile.Name.length > 0) {
             try {
                 const response = await fetch(`${baseURL}/updateprofile`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
+                    credentials: "include",
                     body: JSON.stringify({
                         Name: profile.Name,
-                        Email: User.user.Email,
+                        Email: profile.Email,          // editable email
                         Gender: profile.Gender,
-                        Phone_Number: profile.Phone_Number || "",
-                    }),
+                        Phone_Number: profile.Phone_Number
+                    })
                 });
+
 
                 if (!response.ok) {
                     const errorData = await response.text(); // for more detailed error

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart, addToCart } from "../redux/cartslice";
 import { useAuth } from '../AuthContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Loader from '../component/Loader';
 import FullScreenLoader from '../component/FullScreenLoader';
 const ProductDetail = () => {
@@ -12,12 +12,22 @@ const ProductDetail = () => {
     const dispatch = useDispatch()
     const location = useLocation();
     const [isAddToCart, setisAddToCart] = useState(false)
-    const [loading, setLoading] = useState(true)
-    setTimeout(() => {
-        setLoading(false)
-    }, 1000);
-    const { products } = location.state || {};
+    const [loading, setLoading] = useState(true);
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const t = setTimeout(() => setLoading(false), 1000);
+        return () => clearTimeout(t);
+    }, []);
+
+    const { products } = location.state || {};
+    useEffect(() => {
+        if (!products) {
+            navigate("/");
+        }
+    }, [products, navigate]);
+
     const User = useSelector((state) => state.user)
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
     const addToCart = async () => {
@@ -26,22 +36,23 @@ const ProductDetail = () => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    username: User.user.Username,
                     productId: products.id,
                     name: products.title,
                     price: products.price,
                     productImg: products.thumbnail,
                     quantity: 1,
-                })
+                }),
+                credentials: "include"
+
             });
             const data = await response.json();
-            if (data.success || data.message === "Item added to cart") {
-                // ✅ Refetch latest cart
-                dispatch(fetchCart(User.user.Username));
 
+            if (data.success) {
+                dispatch(fetchCart());
             } else {
                 alert("Failed to add item to cart");
             }
+
         }
         else {
             alert("Please Login or SignUp to Continue!!!")
@@ -58,7 +69,7 @@ const ProductDetail = () => {
 
                             <div className="left lg:w-[40vw] lg:h-[85vh] flex flex-col ">
                                 <div className="img">
-                                    <img src={products.images} alt={products.tags[1]} className="w-[90%] max-w-[350px] h-auto mx-auto hover:scale-105 transition-all" />
+                                    <img src={products.images} alt={products?.tags?.[1]} className="w-[90%] max-w-[350px] h-auto mx-auto hover:scale-105 transition-all" />
                                 </div>
                                 <div className="btn-container flex justify-center items-center gap-[10px]">
 
@@ -90,7 +101,7 @@ const ProductDetail = () => {
                             </div>
                             <div className="right lg:w-[50vw] lg:h-[85vh] ml-[40px] lg:ml-[70px] mt-[20px] mr-[15px]">
                                 <div className="product-name mb-[20px]">
-                                    <h1 className='lg:text-3xl sm:text-2xl text-xl capitalize font-bold'>{products.title}<p className='lg:text-lg text-md font-normal'>#{products.tags[1]}  #{products.tags[0]}</p>
+                                    <h1 className='lg:text-3xl sm:text-2xl text-xl capitalize font-bold'>{products.title}<p className='lg:text-lg text-md font-normal'>#{products?.tags?.[1]}  #{products?.tags?.[0]}</p>
 
                                     </h1>
                                 </div>
@@ -108,9 +119,9 @@ const ProductDetail = () => {
                                     </div>
                                     <div className="right">
                                         <ul className="flex flex-wrap gap-2 text-sm sm:text-base">
-                                            <li className='font-semibold'>Width : {products.dimensions.width} cm  </li>|
-                                            <li className='font-semibold'>Height : {products.dimensions.height} cm </li>|
-                                            <li className='font-semibold'>Depth : {products.dimensions.depth} cm </li>
+                                            <li className='font-semibold'>Width : {products?.dimensions?.width} cm  </li>|
+                                            <li className='font-semibold'>Height : {products?.dimensions?.height} cm </li>|
+                                            <li className='font-semibold'>Depth : {products?.dimensions?.depth} cm </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -134,7 +145,7 @@ const ProductDetail = () => {
                                 <div className="reviews pb-[20px]">
                                     <h2 className='lg:text-2xl sm:text-xl text-lg  font-bold underline'>Reviews</h2>
                                     <div className="cont lg:text-[15px] md:text-sm text-[10px] mt-[15px] flex flex-col">
-                                        {products.reviews.map((item, index) => {
+                                        {Array.isArray(products?.reviews) && products.reviews.map((item, index) => {
                                             return (
                                                 <div key={index} className='flex lg:gap-[20px] gap-[1px] m-[5px]'>
                                                     <h2>Hi, I am {item.reviewerName}</h2>|

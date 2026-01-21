@@ -10,7 +10,6 @@ const Checkout_Payment_Address = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const User = useSelector((state) => state.user);
-  console.log("USER", User)
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [totalAmount, settotalAmount] = useState(0)
   const [quantities, setQuantities] = useState({});
@@ -80,8 +79,6 @@ const Checkout_Payment_Address = () => {
     deliveryDate.setDate(orderDate.getDate() + 7); // Add 7 days
     const orderedParts = extractDateParts(orderDate);
     const deliveryParts = extractDateParts(deliveryDate);
-    console.log("📦 Order Date:", orderedParts);
-    console.log("🚚 Delivery Date:", deliveryParts);
     try {
       for (const item of cart) {
         const baseAmount = item.price * item.quantity;
@@ -93,8 +90,6 @@ const Checkout_Payment_Address = () => {
 
         const orderData = {
           OrderId: uuidv4(),
-          Name: User.user.Name,
-          Email: User.user.Email,
           Phone_number: User.user.Phone_Number,
           Address: User.user.Address[selectedAddress],
           TotalAmount: (item.price * item.quantity + 25 + 5 + ((item.price * item.quantity) * 0.18)).toFixed(2),
@@ -110,7 +105,6 @@ const Checkout_Payment_Address = () => {
           Tax: taxAmount.toFixed(2),
           DeliveryCharge: deliveryCharge,
           CashHandlingCharge: cashHandlingCharge,
-          username: User.user.Username,
           OrderedDate: orderedParts,
           DeliveredDate: deliveryParts,
           CancelledDate: null,
@@ -121,6 +115,7 @@ const Checkout_Payment_Address = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(orderData),
+          credentials: "include"
         });
 
         const data = await response.json()
@@ -230,7 +225,7 @@ const Checkout_Payment_Address = () => {
           <div className="payment lg:w-[50%] flex flex-col items-center md:w-[50%] pl-[4vw] w-full">
 
             <div className="payment-header mt-[1.5vw] relative lg:right-10  md:right-10 text-center flex flex-row items-center right-0  ">
-     
+
               <h1 className='lg:text-[2.5vw] md:text-[2.5vw] text-[4vw]'>Order Summary</h1>
               {/* <div className="line w-[18vw] bg-cyan-500 h-[2px] "></div> */}
             </div>

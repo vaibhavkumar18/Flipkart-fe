@@ -9,7 +9,6 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-    console.log(baseURL)
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
@@ -37,27 +36,18 @@ const Login = () => {
             });
 
         } catch (err) {
-            console.error("Fetch error:", err);
             setErrorMessage("Server unreachable.");
             return;
         }
-        console.log("Response fetching ke baad", response)
-
-        console.log("Response status:", response.status);
         const contentType = response.headers.get("content-type");
-        console.log("Content-Type:", contentType);
 
         const text = await response.text();
-        console.log("Raw response text:", text);
 
         // Try parsing only if it's JSON
         if (contentType && contentType.includes("application/json")) {
             try {
                 const data = JSON.parse(text);
-                console.log("Parsed JSON:", data);
-
                 if (data.success && data.user) {
-                    console.log("Logged In")
                     const profileRes = await fetch(`${baseURL}/api/user/profile`, {
                         credentials: "include"
                     });
@@ -71,7 +61,6 @@ const Login = () => {
                     }
 
                     dispatch(loginSuccess(fullUser));
-
                     setislogin(true);
                     navigate("/");
                 } else {

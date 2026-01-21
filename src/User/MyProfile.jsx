@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import { logout } from "../redux/userslice";
 import FullScreenLoader from '../component/FullScreenLoader';
-
+import { fetchUserData } from '../redux/UserAction';
 // --- Reusable Sidebar Component ---
 // This component contains the navigation links. We'll use it for both mobile and desktop.
 const ProfileSidebar = ({ onLinkClick }) => {
@@ -20,9 +20,17 @@ const ProfileSidebar = ({ onLinkClick }) => {
         }
     };
 
-    const handleLogout = () => {
-        dispatch(logout());
-        navigate('/Login');
+    const handleLogout = async () => {
+        const response = await fetch(`${baseURL}/logout`, {
+            method: "POST",
+            credentials: "include"
+        });
+        const data = await response.json();
+        if (data.success) {
+            dispatch(logout());
+            navigate('/Login');
+        }
+
         if (onLinkClick) {
             onLinkClick();
         }
@@ -125,15 +133,22 @@ const ProfileSidebar = ({ onLinkClick }) => {
 const MyProfile = () => {
     const { isAuthenticated, user } = useSelector((state) => state.user);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile hamburger menu
 
     useEffect(() => {
-        document.title = 'My Profile';
-        // Simulate data fetching
-        const timer = setTimeout(() => setLoading(false), 1000);
-        return () => clearTimeout(timer);
-    }, []);
+        document.title = "My Profile";
+
+        if (isAuthenticated) {
+            dispatch(fetchUserData())
+                .finally(() => setLoading(false));
+        } else {
+            setLoading(false);
+        }
+
+    }, [dispatch, isAuthenticated]);
+
 
     if (!isAuthenticated) {
         // You can navigate them to the login page directly or show a message

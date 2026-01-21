@@ -53,9 +53,7 @@ const OrderDetail = () => {
                 CancelDate: canceldateparts,
             }),
         });
-        console.log("Fetched user:", User.user);
         const result = await response.json();
-        console.log(result)
         setTimeout(() => {
             setCancelloader(false)
 

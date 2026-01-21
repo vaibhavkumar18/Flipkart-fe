@@ -33,9 +33,17 @@ const Header = () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
-    const handleLogout = () => {
-        dispatch(logout());
-        navigate('/Login');
+
+    const handleLogout = async () => {
+        const response = await fetch(`${baseURL}/logout`, {
+            method: "POST",
+            credentials: "include"
+        });
+        const data = await response.json();
+        if (data.success) {
+            dispatch(logout());
+            navigate('/Login');
+        }
     }
 
     const handleMouseEnter = () => {

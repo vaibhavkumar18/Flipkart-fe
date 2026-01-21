@@ -17,7 +17,6 @@ const SignUp = () => {
     const Signup = async () => {
         if (userdata.Name.length > 0 && userdata.Email.length > 0 && userdata.Password.length > 0 && userdata.Phone_Number.length == 10) {
             const username = userdata.Email.split('@')[0]
-            console.log("Userdata", { ...userdata, Username: username })
             const response = await fetch(`${baseURL}/signup`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -32,18 +31,15 @@ const SignUp = () => {
                     addToCart: userdata.addToCart,
                     Orders: userdata.Orders,
                     id: uuidv4()
-                })
+                }),
+                credentials: "include"
             });
             const data = await response.json()
-            console.log("Signup Response Data:", data);
             if (data.success) {
-                dispatch(signup({
-                    ...userdata,
-                    Username: username
-                }));
-                navigate("/")
-
-            } else {
+                dispatch(signup(data.user));
+                navigate("/");
+            }
+            else {
                 alert("This Email Already Exist!!!");
             }
         }

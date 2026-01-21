@@ -14,22 +14,30 @@ const CartPage = () => {
     const navigate = useNavigate();
     const [totalAmount, settotalAmount] = useState(0)
     const dispatch = useDispatch();
-    const cart = useSelector((state) => state.cart.items);
-    console.log(cart)
+    const cart = useSelector(state =>
+        Array.isArray(state.cart.items) ? state.cart.items : []
+    );
+
     const User = useSelector((state) => state.user)
     const [quantities, setQuantities] = useState({});
     const [isCheckout, setisCheckout] = useState(false)
-    const [loading, setLoading] = useState(true)
-    setTimeout(() => {
-        setLoading(false)
-    }, 1000);
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
+        const t = setTimeout(() => setLoading(false), 1000);
+        return () => clearTimeout(t);
+    }, []);
+
+    useEffect(() => {
+        if (!Array.isArray(cart)) return;
+
         const initialQuantities = {};
         cart.forEach(item => {
             initialQuantities[item.productId] = item.quantity;
         });
         setQuantities(initialQuantities);
     }, [cart]);
+
 
 
     useEffect(() => {
@@ -39,18 +47,23 @@ const CartPage = () => {
     useEffect(() => {
         const total = cart.reduce((sum, item) => {
             const qty = quantities[item.productId] || 1;
-            return sum + item.price * qty + 25 + 18 % + 5;
+            return sum + item.price * qty + 25 + 18 + 5;
+
         }, 0);
         settotalAmount(total);
     }, [cart, quantities]); // <== quantities included here
 
     useEffect(() => {
-        if (User.user) {
-            if (User.user.Username) {
-            }
-            dispatch(fetchCart(User.user.Username));
+        if (!User.isAuthenticated) {
+            navigate("/Login");
+            return;
         }
-    }, [User, dispatch]);
+
+        if (User.user?.Username) {
+            dispatch(fetchCart());
+        }
+    }, [User.isAuthenticated, User.user, dispatch, navigate]);
+
 
     const handleRemove = async (productId) => {
         await fetch(`${baseURL}/remove-From-Cart`, {
@@ -65,7 +78,6 @@ const CartPage = () => {
             ...item,
             quantity: quantities[item.productId]
         }));
-        console.log(cartToSend)
 
         await fetch(`${baseURL}/checkout`, {
             method: "POST",
@@ -81,8 +93,6 @@ const CartPage = () => {
             setisCheckout(true);
         }
 
-
-        console.log("payment successfull!!!");
     };
 
 
@@ -107,7 +117,7 @@ const CartPage = () => {
                                 onClick={() => navigate('/')}
                                 className="rounded-full bg-gradient-to-r from-[#818cf8] via-[#3b82f6] to-[#4f46e5] text-white px-6 py-3  shadow hover:bg-blue-700 transition duration-200 flex flex-row items-center hover:scale-90 text-md "
                             >
-                    
+
                                 Continue Shopping
                             </button>
                         </div>

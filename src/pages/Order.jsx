@@ -34,7 +34,7 @@ const Order = () => {
 
     console.log(filteredOrders)
     useEffect(() => {
-        document.title = 'Orders | Flipkart';
+        document.title = 'Orders | Ecom';
         const timer = setTimeout(() => {
             setLoading(false);
         }, 1000);
