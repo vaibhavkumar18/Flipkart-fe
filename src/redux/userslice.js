@@ -11,16 +11,16 @@ const userslice = createSlice({
   reducers: {
 
     // ✅ LOGIN (same name as before)
-    loginSuccess: (state, action) => {
-      state.user = action.payload.user;   // ONLY user
+    signup: (state, action) => {
+      state.user = action.payload;   // 👈 direct user object
       state.isAuthenticated = true;
     },
 
-    // ✅ SIGNUP (same name as before)
-    signup: (state, action) => {
-      state.user = action.payload.user;   // ONLY user
+    loginSuccess: (state, action) => {
+      state.user = action.payload;
       state.isAuthenticated = true;
     },
+
 
     // ✅ LOGOUT
     logout: (state) => {

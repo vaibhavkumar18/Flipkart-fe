@@ -35,6 +35,7 @@ const SignUp = () => {
                 credentials: "include"
             });
             const data = await response.json()
+            console.log('data signup',data)
             if (data.success) {
                 dispatch(signup(data.user));
                 navigate("/");
