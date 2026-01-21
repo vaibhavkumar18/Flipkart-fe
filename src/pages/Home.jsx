@@ -26,7 +26,6 @@ const Home = () => {
   useEffect(() => {
     document.title = 'Online Shoping Of Mobiles and Other Accessories';
   }, []);
-  console.log(product)
   return (
     <>
     <div className="w-full flex flex-col">
