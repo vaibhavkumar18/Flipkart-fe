@@ -73,7 +73,7 @@ const Login = () => {
 
                     setTimeout(() => {
                         dispatch(loginSuccess(fullUser.user));
-                        setislogin(true);
+                        setislogin(false);
                         navigate("/");
                     }, 1500);
 
@@ -101,7 +101,7 @@ const Login = () => {
     };
     if (loading) {
         return (
-            <LoginLoader/>
+            <LoginLoader />
         );
     }
 
