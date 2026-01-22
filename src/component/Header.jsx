@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/userslice";
+import LogoutLoader from './LogoutLoader';
 const Header = () => {
     const baseURL = import.meta.env.VITE_API_BASE_URL; // ✅ dynamic from .env
     const navigate = useNavigate();
@@ -13,12 +14,23 @@ const Header = () => {
     const dropdownRef = useRef(null);
     const [deviceType, setDeviceType] = useState("");
     const [hamOpen, setHamOpen] = useState(false)
+
+
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
         };
+
         handleResize();
         window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!isMobile) return;
 
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -27,34 +39,12 @@ const Header = () => {
         };
 
         document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [isMobile]);
 
-        return () => {
-            window.removeEventListener("resize", handleResize);
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
+  
 
-    const handleLogout = async () => {
-        const response = await fetch(`${baseURL}/logout`, {
-            method: "POST",
-            credentials: "include"
-        });
-        const data = await response.json();
-        if (data.success) {
-            dispatch(logout());
-            navigate('/Login');
-        }
-    }
 
-    const handleMouseEnter = () => {
-        if (!isMobile) setIsOpen(true);
-    };
-
-    const handleMouseLeave = (e) => {
-        if (!isMobile && dropdownRef.current && !dropdownRef.current.contains(e.relatedTarget)) {
-            setIsOpen(false);
-        }
-    };
 
     const handleToggleDropdown = () => {
         if (isMobile) setIsOpen(prev => !prev);
@@ -74,6 +64,8 @@ const Header = () => {
 
         return () => window.removeEventListener("resize", checkDeviceType);
     }, []);
+  
+
 
     return (
         <>
@@ -98,16 +90,28 @@ const Header = () => {
                                 <>
                                     <div
                                         className="relative inline-block"
-                                        onMouseEnter={handleMouseEnter}
-                                        onMouseLeave={handleMouseLeave}
                                         ref={dropdownRef}
+                                        onMouseEnter={() => {
+                                            if (!isMobile) setIsOpen(true);
+                                        }}
                                     >
-                                        <li className='cursor-pointer hover:scale-110 rounded-[10px] lg:text-[20px] md:text-[15px] p-[5px]  text-black  '
+
+
+                                        <li
+                                            className="cursor-pointer hover:scale-110 rounded-[10px]"
                                             onClick={handleToggleDropdown}
-                                        >Hi,&nbsp;{User.user?.Username}</li>
+                                        >
+                                            Hi,&nbsp;{User.user?.Username}
+                                        </li>
                                         {IsOpen && (<>
                                             <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[5rem] lg:w-[10rem] bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] rounded-md border z-50  "
-                                            // Close when leaving dropdown
+                                                // Close when leaving dropdown
+                                                onMouseEnter={() => {
+                                                    if (!isMobile) setIsOpen(true);
+                                                }}
+                                                onMouseLeave={() => {
+                                                    if (!isMobile) setIsOpen(false);
+                                                }}
                                             >
                                                 <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => navigate("/MyProfile")}>
                                                     <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" >
@@ -123,7 +127,7 @@ const Header = () => {
                                                 <div className="lg:w-[10rem] w-[5rem] h-[1px] bg-gray-500"></div>
                                                 <ul className="py-1 hover:bg-[#fafafa] flex flex-row items-center cursor-pointer" onClick={() => handleLogout()}>
                                                     <div className="signup-container flex justify-between items-center cursor-pointer mb-[5px] mt-[5px]" >
-                                                        <li className='cursor-pointer lg:text-sm text-[10px] pl-[1vw]   ' onClick={() => handleLogout()}>Logout</li>
+                                                        <li className='cursor-pointer lg:text-sm text-[10px] pl-[1vw]   ' onClick={() => navigate("/Logout")}>Logout</li>
                                                     </div>
                                                 </ul>
                                                 <div className="lg:w-[10rem] w-[5rem] h-[1px] bg-gray-500"></div>
@@ -135,10 +139,13 @@ const Header = () => {
                                 <>
                                     <div
                                         className="relative inline-block"
-                                        onMouseEnter={handleMouseEnter}
-                                        onMouseLeave={handleMouseLeave}
                                         ref={dropdownRef}
+                                        onMouseEnter={() => {
+                                            if (!isMobile) setIsOpen(true);
+                                        }}
                                     >
+
+
                                         <div className={`container flex flex-row items-center `} >
                                             <li className={`cursor-pointer hover:scale-110 rounded-[10px] p-[5px] text-black lg:text-[20px] md:text-[15px] text-[12px]`}
                                                 onClick={() => navigate("/Login")}
@@ -156,7 +163,13 @@ const Header = () => {
                                         </div>
                                         {IsOpen && (<>
                                             <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[5rem] lg:w-[10rem] bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] rounded-md border z-50  "
-                                            // Close when leaving dropdown
+                                                // Close when leaving dropdown
+                                                onMouseEnter={() => {
+                                                    if (!isMobile) setIsOpen(true);
+                                                }}
+                                                onMouseLeave={() => {
+                                                    if (!isMobile) setIsOpen(false);
+                                                }}
                                             >
                                                 <ul className="py-2 lg:p-[5px] p-[2px] hover:bg-[#fafafa]">
                                                     <div className="signup-container flex justify-between pl-[1vw] flex-col cursor-pointer lg:mb-[15px] lg:mt-[5px] mb-[0px] mt-[1px]">

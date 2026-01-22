@@ -4,6 +4,9 @@ import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import { logout } from "../redux/userslice";
 import FullScreenLoader from '../component/FullScreenLoader';
 import { fetchUserData } from '../redux/UserAction';
+import LogoutLoader from '../component/LogoutLoader';
+
+
 // --- Reusable Sidebar Component ---
 // This component contains the navigation links. We'll use it for both mobile and desktop.
 const ProfileSidebar = ({ onLinkClick }) => {
@@ -13,6 +16,7 @@ const ProfileSidebar = ({ onLinkClick }) => {
     const location = useLocation(); // Use location to determine the active path
     const dispatch = useDispatch();
 
+
     const handleNavigate = (path) => {
         navigate(path);
         if (onLinkClick) {
@@ -20,21 +24,7 @@ const ProfileSidebar = ({ onLinkClick }) => {
         }
     };
 
-    const handleLogout = async () => {
-        const response = await fetch(`${baseURL}/logout`, {
-            method: "POST",
-            credentials: "include"
-        });
-        const data = await response.json();
-        if (data.success) {
-            dispatch(logout());
-            navigate('/Login');
-        }
 
-        if (onLinkClick) {
-            onLinkClick();
-        }
-    }
 
     const navItems = [
         { path: '/MyProfile/ProfileInfo', label: 'Profile Information' },
@@ -119,7 +109,7 @@ const ProfileSidebar = ({ onLinkClick }) => {
                 </div>
                 <hr />
                 {/* LOGOUT */}
-                <div className="flex items-center gap-5 cursor-pointer" onClick={handleLogout}>
+                <div className="flex items-center gap-5 cursor-pointer" onClick={() => navigate("/Logout")}>
                     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#2874F0" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>
                     <p className='font-medium text-sm text-gray-500 hover:text-[#2874f0]'>LOGOUT</p>
                 </div>
@@ -136,6 +126,7 @@ const MyProfile = () => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile hamburger menu
+
 
     useEffect(() => {
         document.title = "My Profile";

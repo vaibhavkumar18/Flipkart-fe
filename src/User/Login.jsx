@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../AuthContext';
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "../redux/userslice";
+import { Loader2 } from "lucide-react";
+import LoginLoader from '../component/LoginLoader';
+
 const Login = () => {
     const baseURL = import.meta.env.VITE_API_BASE_URL; // ✅ dynamic from .env
     const navigate = useNavigate();
@@ -14,14 +17,18 @@ const Login = () => {
     const [errorMessage, setErrorMessage] = useState("");
     const { setislogin } = useAuth()
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+
 
     const handleLogin = async (e) => {
 
         e.preventDefault();
-
+        setErrorMessage("");
+        setLoading(true);
         // Input validation
         if (!email.trim() || !password.trim()) {
             setErrorMessage("Email and Password cannot be empty.");
+            setLoading(false);
             return;
         }
 
@@ -37,6 +44,7 @@ const Login = () => {
 
         } catch (err) {
             setErrorMessage("Server unreachable.");
+            setLoading(false);
             return;
         }
         const contentType = response.headers.get("content-type");
@@ -49,28 +57,37 @@ const Login = () => {
                 const data = JSON.parse(text);
                 if (data.success && data.user) {
                     const profileRes = await fetch(`${baseURL}/api/user/profile`, {
+                        method: "GET",
                         credentials: "include"
                     });
 
                     console.log("profileRes", profileRes)
                     const fullUser = await profileRes.json();
+                    console.log("fullUser", fullUser.user)
 
                     if (!profileRes.ok) {
                         console.error("Profile fetch failed", fullUser);
+                        setLoading(false);
                         return;
                     }
 
-                    dispatch(loginSuccess(fullUser));
-                    setislogin(true);
-                    navigate("/");
+                    setTimeout(() => {
+                        dispatch(loginSuccess(fullUser.user));
+                        setislogin(true);
+                        navigate("/");
+                    }, 1500);
+
+
                 } else {
-                    setErrorMessage(data.message || "Login failed. Please try again.");
-                    alert("Login failed!");
+                    setErrorMessage(data.message || "Login failed");
+                    setLoading(false);
+
                 }
 
             } catch (err) {
                 console.error("JSON parse error:", err);
                 setErrorMessage("Invalid response from server.");
+                setLoading(false);
             }
 
         } else {
@@ -80,7 +97,13 @@ const Login = () => {
         // const data = await response.json()
 
 
+
     };
+    if (loading) {
+        return (
+            <LoginLoader/>
+        );
+    }
 
     return (
         <>

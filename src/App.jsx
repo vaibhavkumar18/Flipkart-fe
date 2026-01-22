@@ -21,6 +21,9 @@ import OrderDetail from './pages/OrderDetail';
 import InvoiceGenerator from './component/InvoiceGenerator';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import LoginLoader from './component/LoginLoader';
+import SignupLoader from './component/SignupLoader';
+import Logout from './User/Logout';
 
 function App() {
 
@@ -53,6 +56,10 @@ function App() {
             <Route path="/FullScreenLoader" element={<FullScreenLoader />} />
             <Route path="/OrderDetail" element={<OrderDetail />} />
             <Route path="/InvoiceGenerator" element={<InvoiceGenerator />} />
+            <Route path="/LoginLoader" element={<LoginLoader />} />
+            <Route path="/SignupLoader" element={<SignupLoader />} />
+            <Route path="/Logout" element={<Logout />} />
+
 
           </Routes>
         </main>

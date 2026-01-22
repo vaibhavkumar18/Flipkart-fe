@@ -16,6 +16,7 @@ const ProfileInfo = () => {
     const handlechange = (e) => {
         setprofile({ ...profile, [e.target.name]: e.target.value })
     }
+    console.log("User",User)
     const handleSave = async () => {
         if (profile.Name.length > 0) {
             try {

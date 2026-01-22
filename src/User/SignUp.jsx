@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { signup } from "../redux/userslice";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
+import SignupLoader from '../component/SignupLoader';
 const SignUp = () => {
     const baseURL = import.meta.env.VITE_API_BASE_URL; // ✅ dynamic from .env
     const dispatch = useDispatch();
@@ -14,7 +15,10 @@ const SignUp = () => {
     const handlechange = (e) => {
         setuserdata({ ...userdata, [e.target.name]: e.target.value })
     }
+    const [loading, setLoading] = useState(false);
+
     const Signup = async () => {
+        setLoading(true);
         if (userdata.Name.length > 0 && userdata.Email.length > 0 && userdata.Password.length > 0 && userdata.Phone_Number.length == 10) {
             const username = userdata.Email.split('@')[0]
             const response = await fetch(`${baseURL}/signup`, {
@@ -35,16 +39,30 @@ const SignUp = () => {
                 credentials: "include"
             });
             const data = await response.json()
-            console.log('data signup',data)
+            console.log('data signup', data)
             if (data.success) {
-                dispatch(signup(data.user));
-                navigate("/");
+                setTimeout(() => {
+                    dispatch(signup(data.user));
+                    navigate("/");
+                }, 1500);
+
             }
             else {
                 alert("This Email Already Exist!!!");
+                setLoading(false);
             }
         }
+        else {
+            setLoading(false);   // ✅ ADD
+            return;
+        }
     }
+    if (loading) {
+        return (
+            <SignupLoader />
+        );
+    }
+
     return (
         <>
             <div className="containe items-center flex justify-center w-full mt-[5px] ">
