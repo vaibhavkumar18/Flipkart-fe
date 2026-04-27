@@ -156,4 +156,4 @@ npm run dev
 
 ---
 
-⭐ If you found this project useful or interesting, consider giving it a star!
+⭐ Found this project helpful or interesting? A star would mean a lot.
