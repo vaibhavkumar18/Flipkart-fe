@@ -99,7 +99,7 @@ const Login = () => {
 
                     <div className="right-block  w-[110%] p-8">
                         <div className="heading mt-[20px] flex flex-col gap-2 text-center" >
-                            <h1 className='lg:text-3xl md:text-3xl text-xl'>Welcome Back</h1>
+                            <h1 className='lg:text-3xl md:text-3xl text-xl font-semibold'>Welcome Back</h1>
                             <p className='lg:text-sm md:text-sm text-[15px]'>Access you Orders and Wishlist</p>
                         </div>
                         <div className="container flex justify-center items-center flex-col lg:ml-[30px] ml-[20px] mt-[15px] gap-[25px] ">
