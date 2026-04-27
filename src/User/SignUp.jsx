@@ -73,6 +73,7 @@ const SignUp = () => {
                             {/* Name  */}
                             <div className="relative w-full Name  ">
                                 <input
+                                    required
                                     type="text"
                                     id="Name"
                                     className="peer w-[80%] border-b-2 border-gray-400 bg-transparent outline-none focus:border-blue-500 focus:ring-0 text-base pt-6 pb-2 cursor-pointer"
@@ -89,6 +90,7 @@ const SignUp = () => {
                             {/* Phone Number  */}
                             <div className="relative w-full phone-number  ">
                                 <input
+                                required
                                     type="tel"
                                     id="Phone-number"
                                     className="peer w-[80%] border-b-2 border-gray-400 bg-transparent outline-none focus:border-blue-500 focus:ring-0 text-base pt-6 pb-2 cursor-pointer"
@@ -120,7 +122,8 @@ const SignUp = () => {
                             {/* Email  */}
                             <div className="relative w-full email  ">
                                 <input
-                                    type="text"
+                                    required
+                                    type="email"
                                     id="Email"
                                     className="peer w-[80%] border-b-2 border-gray-400 bg-transparent outline-none focus:border-blue-500 focus:ring-0 text-base pt-6 pb-2 cursor-pointer"
                                     placeholder=" "
@@ -137,6 +140,7 @@ const SignUp = () => {
                             {/* Password  */}
                             <div className="relative flex flex-row items-center j w-full ">
                                 <input
+                                    required
                                     type={showPassword ? "text" : "password"}
                                     id="Password"
                                     className="peer w-[80%] border-b-2 border-gray-400 bg-transparent outline-none focus:border-blue-500 focus:ring-0 text-base pt-10 pb-1 cursor-pointer"

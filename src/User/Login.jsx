@@ -106,7 +106,8 @@ const Login = () => {
 
                             <div className="relative w-full email-username  ">
                                 <input
-                                    type="text"
+                                    required
+                                    type="email"
                                     id="inputField"
                                     className="peer w-[80%] border-b-2 border-gray-400 bg-transparent outline-none focus:border-blue-500 focus:ring-0 text-base pt-6 pb-2 cursor-pointer"
                                     placeholder=" "
@@ -121,6 +122,7 @@ const Login = () => {
 
                             <div className="relative flex flex-row items-center j w-full ">
                                 <input
+                                    required
                                     type={showPassword ? "text" : "password"}
                                     id="password"
                                     className="peer w-[80%] border-b-2 border-gray-400 bg-transparent outline-none focus:border-blue-500 focus:ring-0 text-base pt-10 pb-1 cursor-pointer"
