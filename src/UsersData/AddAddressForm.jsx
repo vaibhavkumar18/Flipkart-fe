@@ -115,10 +115,10 @@ const AddAddressForm = ({ address, onClose }) => {
 
     return (
         <>
-            <div className="containe flex flex-col  lg:w-[53vw] md:w-[49vw] w-full h-auto p-[10px]  ">
+            <div className="containe flex flex-col   w-full h-auto   ">
                 <h1 className='text-xl font-semibold mb-[30px] '>Manage Addresses</h1>
                 <form >
-                    <div className="address-form w-full max-h-[150vh] bg-[#f5faff] p-[15px] flex flex-col gap-[15px]  border-[#e0e0e0] border-2">
+                    <div className="address-form w-[100%] max-h-[150vh] bg-[#f5faff] p-[15px] flex flex-col gap-[15px]  border-[#e0e0e0] border-2">
                         <span className='text-[#2455f4] font-medium' >ADD A NEW ADDRESS</span>
                         {/* section 1 : name , phone number  */}
                         <div className="name-phone flex gap-2  ">

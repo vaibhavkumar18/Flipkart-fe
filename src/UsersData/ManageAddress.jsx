@@ -122,7 +122,7 @@ const ManageAddress = () => {
 
         (
           <>
-            <div className='manage-address lg:w-[60vw] md:w-[60vw] w-full min-h-[80vh] md:p-[30px]'>
+            <div className='manage-address w-full min-h-[80vh] md:p-[10px]'>
               <h1 className='text-xl font-semibold mb-[30px]'>Manage Addresses</h1>
 
               <div
@@ -139,7 +139,7 @@ const ManageAddress = () => {
 
               {/* ✅ Render Add New Address Form at the TOP */}
               {isAddAddress && !editdata && (
-                <div className="mb-[30px]">
+                <div className="">
                   <AddAddressForm
                     key="new"
                     onClose={(wasSaved) => {

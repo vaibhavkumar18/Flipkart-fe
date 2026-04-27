@@ -41,7 +41,7 @@ const ProfileSidebar = ({ onLinkClick }) => {
                 <img src={`${baseURL}/static/profile.svg`} alt="profile" className="w-12 h-12" />
                 <div>
                     <p className='text-xs text-gray-500'>Hello,</p>
-                    <p className='font-semibold text-base'>{User.user.Username}</p>
+                    <p className='font-semibold lg:text-[12px] md:text-[7px] text-[10px]'>{User.user.Username}</p>
                 </div>
             </div>
 
@@ -189,7 +189,7 @@ const MyProfile = () => {
 
                 {/* Content Area */}
                 {/* We replaced 'w-3/4' with 'col-span-3' for the grid */}
-                <div className="col-span-1 md:col-span-3 bg-white shadow-md rounded-sm p-4 sm:p-6">
+                <div className="col-span-1 md:col-span-3 bg-white shadow-md rounded-sm p-4 sm:p-5">
                     <Outlet />
                 </div>
 
