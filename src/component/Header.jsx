@@ -247,36 +247,36 @@ const Header = () => {
 
                                                 <div className="content xxs:text-base text-xl flex flex-col gap-5">
 
-                                                    <h1 onClick={() => {
+                                                    <h1 className='cursor-pointer' onClick={() => {
                                                         setHamOpen(false)
                                                         navigate("/")
                                                     }}>Home</h1>
 
                                                     {!isAuthenticated ? (
                                                         <>
-                                                            <h1 onClick={() => {
+                                                            <h1 className='cursor-pointer' onClick={() => {
                                                                 setHamOpen(false)
                                                                 navigate("/Login")
                                                             }}>Login</h1>
 
-                                                            <h1 onClick={() => {
+                                                            <h1 className='cursor-pointer' onClick={() => {
                                                                 setHamOpen(false)
                                                                 navigate("/SignUp")
                                                             }}>SignUp</h1>
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <h1 onClick={() => {
+                                                            <h1 className='cursor-pointer' onClick={() => {
                                                                 setHamOpen(false)
                                                                 navigate("/MyProfile")
                                                             }}>MyProfile</h1>
 
-                                                            <h1 onClick={() => {
+                                                            <h1 className='cursor-pointer' onClick={() => {
                                                                 setHamOpen(false)
                                                                 navigate("/Order")
                                                             }}>Orders</h1>
 
-                                                            <h1 onClick={() => {
+                                                            <h1 className='cursor-pointer' onClick={() => {
                                                                 setHamOpen(false);
                                                                 setIsOpen(false);
                                                                 navigate("/Logout");
@@ -284,7 +284,7 @@ const Header = () => {
                                                         </>
                                                     )}
 
-                                                    <h1 onClick={() => {
+                                                    <h1 className='cursor-pointer' onClick={() => {
                                                         setHamOpen(false)
                                                         navigate("/CartPage")
                                                     }}>Cart</h1>
@@ -294,10 +294,6 @@ const Header = () => {
                                             </div>
 
                                         </div>
-
-
-
-
                                     </>
                                 )}
 
