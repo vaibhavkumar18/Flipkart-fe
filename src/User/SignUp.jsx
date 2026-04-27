@@ -38,14 +38,12 @@ const SignUp = () => {
                 }),
                 credentials: "include"
             });
-            const data = await response.json()
-            console.log('data signup', data)
+            const data = await response.json();
             if (data.success) {
                 setTimeout(() => {
                     dispatch(signup(data.user));
                     navigate("/");
-                }, 1500);
-
+                }, 100);
             }
             else {
                 alert("This Email Already Exist!!!");

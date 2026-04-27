@@ -23,7 +23,6 @@ const Order = () => {
 
     const statusOptions = ['On the way', 'Delivered', 'Cancelled'];
     const timeOptions = ['2025', '2024', '2023', '2022', '2021'];
-    console.log(User)
     const filteredOrders = User.isAuthenticated
         ? User.user.Orders.filter(order => {
             const matchStatus = selectedStatus ? order.OrderStatus === selectedStatus : true;
@@ -31,13 +30,11 @@ const Order = () => {
             return matchStatus && matchTime;
         })
         : [];
-
-    console.log(filteredOrders)
     useEffect(() => {
         document.title = 'Orders | Ecom';
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 1000);
+        }, 100);
         return () => clearTimeout(timer); // cleanup
     }, []);
 
@@ -47,7 +44,6 @@ const Order = () => {
     useEffect(() => {
         const checkDeviceType = () => {
             const width = window.innerWidth;
-
             if (width <= 767) setDeviceType("Mobile");
             else if (width <= 1024) setDeviceType("Tablet");
             else setDeviceType("Desktop/Laptop");

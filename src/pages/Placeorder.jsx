@@ -8,7 +8,7 @@ const Placeorder = () => {
     useEffect(() => {
         setTimeout(() => {
             navigate("/Order")
-        }, 2000);
+        }, 100);
 
     }, [])
     return (
@@ -22,4 +22,4 @@ const Placeorder = () => {
     )
 }
 
-export default Placeorder
+export default Placeorder;

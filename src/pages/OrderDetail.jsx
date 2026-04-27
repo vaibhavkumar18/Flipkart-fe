@@ -16,7 +16,6 @@ const OrderDetail = () => {
     const data = User.user?.Orders?.find((order) => order.OrderId == OrderId);
     const [loading, setloading] = useState(true)
     const [cancelloader, setCancelloader] = useState(false)
-    console.log(data)
     const handleDownload = () => {
         if (invoiceRef.current) {
             invoiceRef.current.downloadPDF(); // ✅ calls the exposed function

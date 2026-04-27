@@ -8,7 +8,6 @@ export const fetchUserData = () => async (dispatch) => {
         const res = await axios.get(`${baseURL}/api/user/profile`, {
             withCredentials: true
         });
-        console.log("res",res)
         dispatch(loginSuccess(res.data.user));
     } catch (error) {
         console.error("Error fetching user data:", error);

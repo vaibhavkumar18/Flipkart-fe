@@ -15,8 +15,7 @@ const ProfileInfo = () => {
     const [profile, setprofile] = useState({ Name: User.user.Name, Gender: User.user.Gender, Email: User.user.Email, Phone_Number: User.user.Phone_Number || "" })
     const handlechange = (e) => {
         setprofile({ ...profile, [e.target.name]: e.target.value })
-    }
-    console.log("User",User)
+    };
     const handleSave = async () => {
         if (profile.Name.length > 0) {
             try {
@@ -54,7 +53,6 @@ const ProfileInfo = () => {
                     theme: "dark",
                     transition: Bounce,
                 });
-                console.log("Success:", data);
             } catch (error) {
                 console.error("Fetch error:", error.message);
             }

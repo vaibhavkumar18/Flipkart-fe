@@ -22,7 +22,6 @@ const AddAddressForm = ({ address, onClose }) => {
         "State",
         "Address_Type"
     ];
-    console.log("address", address)
     const User = useSelector((state) => state.user);
     const [save, setsave] = useState(false)
     const [states, setstates] = useState("--Select State--")
@@ -48,10 +47,8 @@ const AddAddressForm = ({ address, onClose }) => {
             setmanageaddress(address);
         }
     }, [address]);
-    console.log("manageaddress", manageaddress)
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
-
         setmanageaddress((prev) => ({
             ...prev,
             [name]: type === "checkbox" ? checked : value,
@@ -77,7 +74,6 @@ const AddAddressForm = ({ address, onClose }) => {
             : `${baseURL}/AddAddress`;
 
         const method = isEditing ? "PUT" : "POST";
-        console.log(manageaddress.id)
         try {
             const response = await fetch(endpoint, {
                 method,

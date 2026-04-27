@@ -60,44 +60,29 @@ const Login = () => {
                         method: "GET",
                         credentials: "include"
                     });
-
-                    console.log("profileRes", profileRes)
                     const fullUser = await profileRes.json();
-                    console.log("fullUser", fullUser.user)
-
                     if (!profileRes.ok) {
-                        console.error("Profile fetch failed", fullUser);
                         setLoading(false);
                         return;
                     }
-
-                    setTimeout(() => {
-                        dispatch(loginSuccess(fullUser.user));
-                        setislogin(false);
-                        navigate("/");
-                    }, 1500);
-
+                    dispatch(loginSuccess(fullUser.user));
+                    setislogin(false);
+                    navigate("/");
 
                 } else {
                     setErrorMessage(data.message || "Login failed");
                     setLoading(false);
-
                 }
-
             } catch (err) {
                 console.error("JSON parse error:", err);
                 setErrorMessage("Invalid response from server.");
                 setLoading(false);
             }
-
         } else {
             console.error("Not JSON response. Got HTML or something else.");
             setErrorMessage("Server error. Please try again later.");
         }
         // const data = await response.json()
-
-
-
     };
     if (loading) {
         return (
@@ -109,7 +94,6 @@ const Login = () => {
         <>
             <div
                 className="max-h-screen w-full flex justify-center items-center py-[40px]"
-
             >
                 <div className="login-containe  lg:w-[45vw] m-[20px] md:w-[70vw] sm:w-[40vh] shadow-[0_20px_15px_5px_rgb(0_0_0_/_0.15),_0_10px_20px_-4px_rgb(0_0_0_/_0.15)] lg:max-h-[110vh] md:max-h-[100vh] max-h-[80vh] flex p-0 rounded-xl" >
 

@@ -21,7 +21,7 @@ const Home = () => {
     setTimeout(() => {
       getdata()
 
-    }, 500);
+    }, 100);
   }, [])
   useEffect(() => {
     document.title = 'Online Shoping Of Mobiles and Other Accessories';

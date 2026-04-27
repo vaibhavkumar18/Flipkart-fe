@@ -8,7 +8,7 @@ const LoginLoader = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             navigate("/");
-        }, 2000);
+        }, 100);
 
         return () => clearTimeout(timer);
     }, []);

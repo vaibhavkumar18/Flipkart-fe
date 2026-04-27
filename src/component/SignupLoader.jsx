@@ -8,7 +8,7 @@ const SignupLoader = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             navigate("/Login");
-        }, 2000);
+        }, 100);
 
         return () => clearTimeout(timer);
     }, []);
